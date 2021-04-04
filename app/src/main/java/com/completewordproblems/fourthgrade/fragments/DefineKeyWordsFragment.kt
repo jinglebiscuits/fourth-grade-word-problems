@@ -1,12 +1,11 @@
-package com.completewordproblems.fourthgrade
+package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
+import com.completewordproblems.fourthgrade.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -15,10 +14,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [MyNavigationFragment.newInstance] factory method to
+ * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MyNavigationFragment : Fragment() {
+class DefineKeyWordsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -35,19 +34,8 @@ class MyNavigationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view: View = inflater.inflate(R.layout.fragment_my_navigation, container, false)
-        view.findViewById<Button>(R.id.practice_button).setOnClickListener {
-            view.findNavController().navigate(R.id.action_myNavigationFragment_to_practiceFragment)
-        }
-        view.findViewById<Button>(R.id.growth_button).setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_myNavigationFragment_to_yourGrowthFragment)
-        }
-        view.findViewById<Button>(R.id.strategy_button).setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_myNavigationFragment_to_strategyAlgorithmFragment)
-        }
-        return view
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_define_key_words, container, false)
     }
 
     companion object {
@@ -57,12 +45,12 @@ class MyNavigationFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment MyNavigationFragment.
+         * @return A new instance of fragment DefineKeyWordsFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            MyNavigationFragment().apply {
+            DefineKeyWordsFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)
