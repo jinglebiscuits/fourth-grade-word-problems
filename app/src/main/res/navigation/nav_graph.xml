@@ -6,7 +6,7 @@
     app:startDestination="@id/myNavigationFragment">
     <fragment
         android:id="@+id/myNavigationFragment"
-        android:name="com.completewordproblems.fourthgrade.MyNavigationFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.MyNavigationFragment"
         android:label="fragment_my_navigation"
         tools:layout="@layout/fragment_my_navigation">
         <action
@@ -21,7 +21,7 @@
     </fragment>
     <fragment
         android:id="@+id/practiceFragment"
-        android:name="com.completewordproblems.fourthgrade.PracticeFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.PracticeFragment"
         android:label="fragment_practice"
         tools:layout="@layout/fragment_practice" >
         <action
@@ -51,52 +51,52 @@
     </fragment>
     <fragment
         android:id="@+id/readTheProblemFragment"
-        android:name="com.completewordproblems.fourthgrade.ReadTheProblemFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.ReadTheProblemFragment"
         android:label="fragment_read_the_problem"
         tools:layout="@layout/fragment_read_the_problem" />
     <fragment
         android:id="@+id/defineKeyWordsFragment"
-        android:name="com.completewordproblems.fourthgrade.DefineKeyWordsFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.DefineKeyWordsFragment"
         android:label="fragment_define_key_words"
         tools:layout="@layout/fragment_define_key_words" />
     <fragment
         android:id="@+id/yourGrowthFragment"
-        android:name="com.completewordproblems.fourthgrade.YourGrowthFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.YourGrowthFragment"
         android:label="fragment_your_growth"
         tools:layout="@layout/fragment_your_growth" />
     <fragment
         android:id="@+id/strategyAlgorithmFragment"
-        android:name="com.completewordproblems.fourthgrade.StrategyAlgorithmFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.StrategyAlgorithmFragment"
         android:label="fragment_strategy_algorithm"
         tools:layout="@layout/fragment_strategy_algorithm" />
     <fragment
         android:id="@+id/solveFragment"
-        android:name="com.completewordproblems.fourthgrade.SolveFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.SolveFragment"
         android:label="fragment_solve"
         tools:layout="@layout/fragment_solve" />
     <fragment
         android:id="@+id/createExpressionFragment"
-        android:name="com.completewordproblems.fourthgrade.CreateExpressionFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.CreateExpressionFragment"
         android:label="fragment_create_expression"
         tools:layout="@layout/fragment_create_expression" />
     <fragment
         android:id="@+id/drawSceneFragment"
-        android:name="com.completewordproblems.fourthgrade.DrawSceneFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.DrawSceneFragment"
         android:label="fragment_draw_scene"
         tools:layout="@layout/fragment_draw_scene" />
     <fragment
         android:id="@+id/removeInformationFragment"
-        android:name="com.completewordproblems.fourthgrade.RemoveInformationFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.RemoveInformationFragment"
         android:label="fragment_remove_information"
         tools:layout="@layout/fragment_remove_information" />
     <fragment
         android:id="@+id/whatIsGivenFragment"
-        android:name="com.completewordproblems.fourthgrade.WhatIsGivenFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.WhatIsGivenFragment"
         android:label="fragment_what_is_given"
         tools:layout="@layout/fragment_what_is_given" />
     <fragment
         android:id="@+id/whatAreYouLookingForFragment"
-        android:name="com.completewordproblems.fourthgrade.WhatAreYouLookingForFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.WhatAreYouLookingForFragment"
         android:label="fragment_what_are_you_looking_for"
         tools:layout="@layout/fragment_what_are_you_looking_for" />
 </navigation>
