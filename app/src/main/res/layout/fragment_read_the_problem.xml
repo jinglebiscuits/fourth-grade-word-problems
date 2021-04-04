@@ -18,6 +18,7 @@
         android:text="Ashley and four friends recently went trick-or-treating. Each of them got 4/5 of a bag of treats. How many bags of treats did they have in total?" />
 
     <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/read_aloud_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
