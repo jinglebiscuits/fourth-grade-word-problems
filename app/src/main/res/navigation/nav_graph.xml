@@ -23,7 +23,7 @@
         android:id="@+id/practiceFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.PracticeFragment"
         android:label="fragment_practice"
-        tools:layout="@layout/fragment_practice" >
+        tools:layout="@layout/fragment_practice">
         <action
             android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
             app:destination="@id/readTheProblemFragment" />
@@ -53,12 +53,63 @@
         android:id="@+id/readTheProblemFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.ReadTheProblemFragment"
         android:label="fragment_read_the_problem"
-        tools:layout="@layout/fragment_read_the_problem" />
+        tools:layout="@layout/fragment_read_the_problem">
+
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/defineKeyWordsFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.DefineKeyWordsFragment"
         android:label="fragment_define_key_words"
-        tools:layout="@layout/fragment_define_key_words" />
+        tools:layout="@layout/fragment_define_key_words">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/yourGrowthFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.YourGrowthFragment"
@@ -73,30 +124,180 @@
         android:id="@+id/solveFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.SolveFragment"
         android:label="fragment_solve"
-        tools:layout="@layout/fragment_solve" />
+        tools:layout="@layout/fragment_solve">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createExpressionFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.CreateExpressionFragment"
         android:label="fragment_create_expression"
-        tools:layout="@layout/fragment_create_expression" />
+        tools:layout="@layout/fragment_create_expression">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/drawSceneFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.DrawSceneFragment"
         android:label="fragment_draw_scene"
-        tools:layout="@layout/fragment_draw_scene" />
+        tools:layout="@layout/fragment_draw_scene">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/removeInformationFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.RemoveInformationFragment"
         android:label="fragment_remove_information"
-        tools:layout="@layout/fragment_remove_information" />
+        tools:layout="@layout/fragment_remove_information">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/whatIsGivenFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.WhatIsGivenFragment"
         android:label="fragment_what_is_given"
-        tools:layout="@layout/fragment_what_is_given" />
+        tools:layout="@layout/fragment_what_is_given">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
     <fragment
         android:id="@+id/whatAreYouLookingForFragment"
         android:name="com.completewordproblems.fourthgrade.fragments.WhatAreYouLookingForFragment"
         android:label="fragment_what_are_you_looking_for"
-        tools:layout="@layout/fragment_what_are_you_looking_for" />
+        tools:layout="@layout/fragment_what_are_you_looking_for">
+        <action
+            android:id="@+id/action_practiceFragment_to_readTheProblemFragment"
+            app:destination="@id/readTheProblemFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
+            app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
 </navigation>
