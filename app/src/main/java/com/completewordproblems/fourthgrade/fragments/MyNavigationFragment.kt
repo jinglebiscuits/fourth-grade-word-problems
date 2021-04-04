@@ -35,7 +35,7 @@ class MyNavigationFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view: View = inflater.inflate(R.layout.fragment_my_navigation, container, false)
         view.findViewById<Button>(R.id.practice_button).setOnClickListener {
             view.findNavController().navigate(R.id.action_myNavigationFragment_to_practiceFragment)
