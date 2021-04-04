@@ -1,10 +1,12 @@
 package com.completewordproblems.fourthgrade
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,8 +35,19 @@ class MyNavigationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_navigation, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_my_navigation, container, false)
+        view.findViewById<Button>(R.id.practice_button).setOnClickListener {
+            view.findNavController().navigate(R.id.action_myNavigationFragment_to_practiceFragment)
+        }
+        view.findViewById<Button>(R.id.growth_button).setOnClickListener {
+            view.findNavController()
+                .navigate(R.id.action_myNavigationFragment_to_yourGrowthFragment)
+        }
+        view.findViewById<Button>(R.id.strategy_button).setOnClickListener {
+            view.findNavController()
+                .navigate(R.id.action_myNavigationFragment_to_strategyAlgorithmFragment)
+        }
+        return view
     }
 
     companion object {
