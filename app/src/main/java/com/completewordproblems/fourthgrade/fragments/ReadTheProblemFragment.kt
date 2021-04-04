@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import java.util.*
 
@@ -54,6 +55,14 @@ class ReadTheProblemFragment : Fragment(), TextToSpeech.OnInitListener {
             // TODO: 4/4/21 this tts might not be ready
             tts.speak(wordProblemText, TextToSpeech.QUEUE_FLUSH, null, "word_problem")
         })
+        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
+            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_defineKeyWordsFragment)
+        })
+        view.findViewById<View>(R.id.back_button).setOnClickListener {
+            view.findNavController().navigate(R.id.practiceFragment)
+        }
         return view
     }
 
