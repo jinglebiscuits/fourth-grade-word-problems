@@ -30,6 +30,24 @@
         <action
             android:id="@+id/action_practiceFragment_to_defineKeyWordsFragment"
             app:destination="@id/defineKeyWordsFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_solveFragment"
+            app:destination="@id/solveFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_createExpressionFragment"
+            app:destination="@id/createExpressionFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_drawSceneFragment"
+            app:destination="@id/drawSceneFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_removeInformationFragment"
+            app:destination="@id/removeInformationFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatIsGivenFragment"
+            app:destination="@id/whatIsGivenFragment" />
+        <action
+            android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
+            app:destination="@id/whatAreYouLookingForFragment" />
     </fragment>
     <fragment
         android:id="@+id/readTheProblemFragment"
@@ -51,4 +69,34 @@
         android:name="com.completewordproblems.fourthgrade.StrategyAlgorithmFragment"
         android:label="fragment_strategy_algorithm"
         tools:layout="@layout/fragment_strategy_algorithm" />
+    <fragment
+        android:id="@+id/solveFragment"
+        android:name="com.completewordproblems.fourthgrade.SolveFragment"
+        android:label="fragment_solve"
+        tools:layout="@layout/fragment_solve" />
+    <fragment
+        android:id="@+id/createExpressionFragment"
+        android:name="com.completewordproblems.fourthgrade.CreateExpressionFragment"
+        android:label="fragment_create_expression"
+        tools:layout="@layout/fragment_create_expression" />
+    <fragment
+        android:id="@+id/drawSceneFragment"
+        android:name="com.completewordproblems.fourthgrade.DrawSceneFragment"
+        android:label="fragment_draw_scene"
+        tools:layout="@layout/fragment_draw_scene" />
+    <fragment
+        android:id="@+id/removeInformationFragment"
+        android:name="com.completewordproblems.fourthgrade.RemoveInformationFragment"
+        android:label="fragment_remove_information"
+        tools:layout="@layout/fragment_remove_information" />
+    <fragment
+        android:id="@+id/whatIsGivenFragment"
+        android:name="com.completewordproblems.fourthgrade.WhatIsGivenFragment"
+        android:label="fragment_what_is_given"
+        tools:layout="@layout/fragment_what_is_given" />
+    <fragment
+        android:id="@+id/whatAreYouLookingForFragment"
+        android:name="com.completewordproblems.fourthgrade.WhatAreYouLookingForFragment"
+        android:label="fragment_what_are_you_looking_for"
+        tools:layout="@layout/fragment_what_are_you_looking_for" />
 </navigation>
