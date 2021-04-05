@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlin.math.max
@@ -54,6 +55,8 @@ class DefineKeyWordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
+
+        //region testing the progress bar
         view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
             progress = min(progress + 10, progressTotal)
         }
@@ -62,6 +65,18 @@ class DefineKeyWordsFragment : Fragment() {
         }
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
+        //endregion
+
+        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
+            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_whatAreYouLookingForFragment)
+        })
+        view.findViewById<View>(R.id.back_button).setOnClickListener {
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_readTheProblemFragment)
+        }
+
         return view
     }
 
