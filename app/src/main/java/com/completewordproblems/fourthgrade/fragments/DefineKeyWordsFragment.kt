@@ -1,6 +1,8 @@
 package com.completewordproblems.fourthgrade.fragments
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +17,7 @@ import kotlin.math.min
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
+private const val LOG_TAG = "DefineKeyWordsFragment"
 
 /**
  * A simple [Fragment] subclass.
@@ -26,14 +29,17 @@ class DefineKeyWordsFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private var progress: Int = 0
-    set(value) {
-        progressBar.progress = value
-        field = value
-    }
+        set(value) {
+            Log.d(LOG_TAG, "progress: $progress")
+            val currentPosition: Int = progress
+            ObjectAnimator.ofInt(progressBar, "progress", currentPosition, value)
+                .setDuration(100).start()
+            field = value
+        }
     private lateinit var progressBar: LinearProgressIndicator
 
     // TODO: 4/4/21 this needs to be set by the word problem
-    private var progressTotal: Int = 5
+    private var progressTotal: Int = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,13 +55,13 @@ class DefineKeyWordsFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
         view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
-            progress = min(progress + 1, progressTotal)
+            progress = min(progress + 10, progressTotal)
         }
         view.findViewById<Button>(R.id.test_undefine_button).setOnClickListener {
-            progress = max(progress - 1, 0)
+            progress = max(progress - 10, 0)
         }
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
-        progressBar.max = 5
+        progressBar.max = progressTotal
         return view
     }
 
