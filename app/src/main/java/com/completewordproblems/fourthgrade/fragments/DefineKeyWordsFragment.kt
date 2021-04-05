@@ -1,11 +1,15 @@
 package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.Fragment
 import com.completewordproblems.fourthgrade.R
+import com.google.android.material.progressindicator.LinearProgressIndicator
+import kotlin.math.max
+import kotlin.math.min
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +25,15 @@ class DefineKeyWordsFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var progress: Int = 0
+    set(value) {
+        progressBar.progress = value
+        field = value
+    }
+    private lateinit var progressBar: LinearProgressIndicator
+
+    // TODO: 4/4/21 this needs to be set by the word problem
+    private var progressTotal: Int = 5
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,9 +46,17 @@ class DefineKeyWordsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_define_key_words, container, false)
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
+        view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
+            progress = min(progress + 1, progressTotal)
+        }
+        view.findViewById<Button>(R.id.test_undefine_button).setOnClickListener {
+            progress = max(progress - 1, 0)
+        }
+        progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
+        progressBar.max = 5
+        return view
     }
 
     companion object {
