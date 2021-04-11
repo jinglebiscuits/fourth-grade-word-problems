@@ -10,7 +10,6 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -18,7 +17,6 @@ import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 import com.completewordproblems.fourthgrade.models.KeyWord
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import kotlin.math.max
 import kotlin.math.min
 
 // TODO: Rename parameter arguments, choose names that match
@@ -46,6 +44,7 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         }
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var wordProblemTextView: TextView
+    private lateinit var numeratorTextView: TextView
     private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
     private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
 
@@ -68,17 +67,11 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         incompleteKeyWords = Wizard.getWordProblem().getKeyWords() as ArrayList<KeyWord>
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
         updateTextView()
-
-        //region testing the progress bar
-        view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
-            progress = min(progress + 10, progressTotal)
-        }
-        view.findViewById<Button>(R.id.test_undefine_button).setOnClickListener {
-            progress = max(progress - 10, 0)
-        }
+        progressTotal = incompleteKeyWords.size * 10
+        view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
+        numeratorTextView = view.findViewById(R.id.numerator)
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
-        //endregion
 
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
@@ -113,6 +106,7 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         progress = min(progress + 10, progressTotal)
         incompleteKeyWords.remove(keyWord)
         updateTextView()
+        numeratorTextView.text = ((progressTotal / 10) - incompleteKeyWords.size).toString()
     }
 
     companion object {

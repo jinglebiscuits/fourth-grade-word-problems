@@ -19,22 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/test_define_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="define"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/word_problem_text" />
-
-    <Button
-        android:id="@+id/test_undefine_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="un-define"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/word_problem_text" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
