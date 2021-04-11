@@ -8,12 +8,11 @@ import com.completewordproblems.fourthgrade.models.KeyWord
 
 class VocabularyDialogFragment(
     private val vocabularyDialogListener: VocabularyDialogListener,
-    val keyWord: KeyWord
+    private val keyWord: KeyWord
 ) :
     DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val word = arguments?.getString("word")
         return AlertDialog.Builder(requireContext())
             .setTitle("Select the correct definition for: ${keyWord.keyWord}")
             .setPositiveButton(
