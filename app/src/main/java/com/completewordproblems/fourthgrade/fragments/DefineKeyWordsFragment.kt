@@ -2,14 +2,21 @@ package com.completewordproblems.fourthgrade.fragments
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlin.math.max
 import kotlin.math.min
@@ -38,6 +45,7 @@ class DefineKeyWordsFragment : Fragment() {
             field = value
         }
     private lateinit var progressBar: LinearProgressIndicator
+    private lateinit var wordProblemTextView: TextView
 
     // TODO: 4/4/21 this needs to be set by the word problem
     private var progressTotal: Int = 100
@@ -55,6 +63,22 @@ class DefineKeyWordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
+
+        wordProblemTextView = view.findViewById(R.id.word_problem_text)
+        val ss =
+            SpannableString(Wizard.getWordProblem().getWordProblemText())
+        Wizard.getWordProblem().getKeyWords().forEach {
+            ss.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(widget.context)
+                    dialogBuilder.setTitle("WE know").setMessage("do you know?")
+                    dialogBuilder.create().show()
+                }
+            }, it.start, it.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        }
+
+        wordProblemTextView.text = ss
+        wordProblemTextView.movementMethod = LinkMovementMethod.getInstance()
 
         //region testing the progress bar
         view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
