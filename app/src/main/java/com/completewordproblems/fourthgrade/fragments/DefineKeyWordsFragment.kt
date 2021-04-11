@@ -10,15 +10,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
+import com.completewordproblems.fourthgrade.models.KeyWord
 import com.google.android.material.progressindicator.LinearProgressIndicator
-import kotlin.math.max
 import kotlin.math.min
 
 // TODO: Rename parameter arguments, choose names that match
@@ -32,7 +30,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : Fragment() {
+class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDialogListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -46,6 +44,9 @@ class DefineKeyWordsFragment : Fragment() {
         }
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var wordProblemTextView: TextView
+    private lateinit var numeratorTextView: TextView
+    private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
+    private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
 
     // TODO: 4/4/21 this needs to be set by the word problem
     private var progressTotal: Int = 100
@@ -63,33 +64,14 @@ class DefineKeyWordsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
-
+        incompleteKeyWords = Wizard.getWordProblem().getKeyWords() as ArrayList<KeyWord>
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
-        val ss =
-            SpannableString(Wizard.getWordProblem().getWordProblemText())
-        Wizard.getWordProblem().getKeyWords().forEach {
-            ss.setSpan(object : ClickableSpan() {
-                override fun onClick(widget: View) {
-                    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(widget.context)
-                    dialogBuilder.setTitle("WE know").setMessage("do you know?")
-                    dialogBuilder.create().show()
-                }
-            }, it.start, it.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
-        }
-
-        wordProblemTextView.text = ss
-        wordProblemTextView.movementMethod = LinkMovementMethod.getInstance()
-
-        //region testing the progress bar
-        view.findViewById<Button>(R.id.test_define_button).setOnClickListener {
-            progress = min(progress + 10, progressTotal)
-        }
-        view.findViewById<Button>(R.id.test_undefine_button).setOnClickListener {
-            progress = max(progress - 10, 0)
-        }
+        updateTextView()
+        progressTotal = incompleteKeyWords.size * 10
+        view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
+        numeratorTextView = view.findViewById(R.id.numerator)
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
-        //endregion
 
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
@@ -102,6 +84,29 @@ class DefineKeyWordsFragment : Fragment() {
         }
 
         return view
+    }
+
+    private fun updateTextView() {
+        val ss =
+            SpannableString(Wizard.getWordProblem().getWordProblemText())
+        incompleteKeyWords.forEach {
+            ss.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    val vocabDialog = VocabularyDialogFragment(this@DefineKeyWordsFragment, it)
+                    vocabDialog.show(childFragmentManager, VocabularyDialogFragment.TAG)
+                }
+            }, it.start, it.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+        }
+
+        wordProblemTextView.text = ss
+        wordProblemTextView.movementMethod = LinkMovementMethod.getInstance()
+    }
+
+    override fun onSubmit(keyWord: KeyWord) {
+        progress = min(progress + 10, progressTotal)
+        incompleteKeyWords.remove(keyWord)
+        updateTextView()
+        numeratorTextView.text = ((progressTotal / 10) - incompleteKeyWords.size).toString()
     }
 
     companion object {
