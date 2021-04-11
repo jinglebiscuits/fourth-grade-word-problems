@@ -16,6 +16,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlin.math.max
 import kotlin.math.min
@@ -65,16 +66,17 @@ class DefineKeyWordsFragment : Fragment() {
 
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
         val ss =
-            SpannableString("Ashley and four friends recently went trick-or-treating. Each of them got 4/5 of a bag of treats. How many bags of treats did they have in total?")
-        val clickableSpan = object : ClickableSpan() {
-            override fun onClick(widget: View) {
-                val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(widget.context)
-                dialogBuilder.setTitle("WE know").setMessage("do you know?")
-                dialogBuilder.create().show()
-            }
-
+            SpannableString(Wizard.getWordProblem().getWordProblemText())
+        Wizard.getWordProblem().getKeyWords().forEach {
+            ss.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(widget.context)
+                    dialogBuilder.setTitle("WE know").setMessage("do you know?")
+                    dialogBuilder.create().show()
+                }
+            }, it.start, it.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         }
-        ss.setSpan(clickableSpan, 6, 11, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
+
         wordProblemTextView.text = ss
         wordProblemTextView.movementMethod = LinkMovementMethod.getInstance()
 

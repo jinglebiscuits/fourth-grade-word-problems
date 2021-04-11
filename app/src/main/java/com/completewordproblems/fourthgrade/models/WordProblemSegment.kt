@@ -1,7 +1,13 @@
 package com.completewordproblems.fourthgrade.models
 
-data class WordProblemSegment(
+class WordProblemSegment(
     val segment: String,
     val isNecessary: Boolean,
     val isMainObjective: Boolean
-)
+) {
+    val keyWords = mutableListOf<KeyWord>()
+
+    fun addKeyword(keyWord: KeyWord) {
+        keyWords.add(keyWord)
+    }
+}

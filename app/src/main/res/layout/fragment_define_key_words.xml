@@ -13,7 +13,7 @@
         android:layout_margin="16dp"
         android:clickable="true"
         android:focusable="true"
-        android:text="Ashley and four friends recently went trick-or-treating. Each of them got 4/5 of a bag of treats. How many bags of treats did they have in total?"
+        android:text="word problem"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

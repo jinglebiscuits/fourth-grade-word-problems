@@ -1,7 +1,8 @@
 package com.completewordproblems.fourthgrade.models
 
-interface KeyWord {
-
-    val keyWord: String
+data class KeyWord(
+    val start: Int,
+    val end: Int,
+    val keyWord: String,
     val concept: Concept
-}
+)

@@ -3,7 +3,6 @@ package com.completewordproblems.fourthgrade.models
 class WordProblem {
     val id: Int = 1
     lateinit var segments: List<WordProblemSegment>
-    lateinit var keyWords: List<KeyWord>
     lateinit var answer: String
     lateinit var concepts: List<Concept>
 
@@ -25,5 +24,18 @@ class WordProblem {
             wordProblemText = wordProblemText.plus(it.segment + " ")
         })
         return wordProblemText.dropLast(1)
+    }
+
+    fun getKeyWords(): List<KeyWord> {
+        val keyWords = mutableListOf<KeyWord>()
+        var position = 0
+        segments.forEach {
+            it.keyWords.forEach { it1 ->
+                val kw = it1.copy(start = position + it1.start, end = position + it1.end)
+                keyWords.add(kw)
+            }
+            position += it.segment.length + 1
+        }
+        return keyWords
     }
 }
