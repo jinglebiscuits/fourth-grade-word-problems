@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
@@ -32,7 +31,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : Fragment() {
+class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDialogListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -70,9 +69,9 @@ class DefineKeyWordsFragment : Fragment() {
         Wizard.getWordProblem().getKeyWords().forEach {
             ss.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {
-                    val dialogBuilder: AlertDialog.Builder = AlertDialog.Builder(widget.context)
-                    dialogBuilder.setTitle("WE know").setMessage("do you know?")
-                    dialogBuilder.create().show()
+                    val vocabDialog = VocabularyDialogFragment(this@DefineKeyWordsFragment)
+                    vocabDialog.setArguments(it.keyWord)
+                    vocabDialog.show(childFragmentManager, VocabularyDialogFragment.TAG)
                 }
             }, it.start, it.end, Spanned.SPAN_INCLUSIVE_INCLUSIVE)
         }
@@ -122,5 +121,9 @@ class DefineKeyWordsFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onSubmit() {
+        progress = min(progress + 10, progressTotal)
     }
 }

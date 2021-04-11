@@ -15,21 +15,21 @@ object Wizard {
             isNecessary = true,
             isMainObjective = false
         )
-        val keyWord1 = KeyWord(24, 32, "", Concept(listOf(), 1, 1))
+        val keyWord1 = KeyWord(24, 32, "recently", Concept(listOf(), 1, 1))
         segment1.addKeyword(keyWord1)
         val segment2 = WordProblemSegment(
             "Each of them got 4/5 of a bag of treats.",
             isNecessary = true,
             isMainObjective = false
         )
-        val keyWord2 = KeyWord(17, 20, "", Concept(listOf(), 1, 1))
+        val keyWord2 = KeyWord(17, 20, "4/5", Concept(listOf(), 1, 1))
         segment2.addKeyword(keyWord2)
         val segment3 = WordProblemSegment(
             "How many bags of treats did they have in total?",
             isNecessary = true,
             isMainObjective = true
         )
-        val keyWord3 = KeyWord(41, 46, "", Concept(listOf(), 1, 1))
+        val keyWord3 = KeyWord(41, 46, "total", Concept(listOf(), 1, 1))
         segment3.addKeyword(keyWord3)
         val text: List<WordProblemSegment> = listOf(
             segment1,
