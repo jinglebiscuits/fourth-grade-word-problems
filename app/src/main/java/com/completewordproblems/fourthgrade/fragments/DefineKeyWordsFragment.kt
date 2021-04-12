@@ -102,11 +102,13 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         wordProblemTextView.movementMethod = LinkMovementMethod.getInstance()
     }
 
-    override fun onSubmit(keyWord: KeyWord) {
-        progress = min(progress + 10, progressTotal)
-        incompleteKeyWords.remove(keyWord)
-        updateTextView()
-        numeratorTextView.text = ((progressTotal / 10) - incompleteKeyWords.size).toString()
+    override fun onSubmit(keyWord: KeyWord, isCorrect: Boolean) {
+        if (isCorrect) {
+            progress = min(progress + 10, progressTotal)
+            incompleteKeyWords.remove(keyWord)
+            updateTextView()
+            numeratorTextView.text = ((progressTotal / 10) - incompleteKeyWords.size).toString()
+        }
     }
 
     companion object {
