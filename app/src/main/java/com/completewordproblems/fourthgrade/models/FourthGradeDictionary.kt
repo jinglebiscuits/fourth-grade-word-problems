@@ -6,7 +6,7 @@ object FourthGradeDictionary {
         "recently" to FourthGradeWord(
             "recent",
             "during the period of time that has just passed : not long ago",
-            listOf("of relatively late occurrence or appearance", "a long time ago")
+            arrayOf("of relatively late occurrence or appearance", "a long time ago")
         )
     )
 
