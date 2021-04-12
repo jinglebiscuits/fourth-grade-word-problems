@@ -16,7 +16,7 @@ class VocabularyDialogFragment(
     private val keyWord: KeyWord
 ) : DialogFragment() {
 
-    private var correctPosition = 0
+    private var correctPosition = -1
     private var chosenPosition = -1
     private lateinit var dialog: AlertDialog
 
@@ -53,7 +53,9 @@ class VocabularyDialogFragment(
             }
             .create()
         dialog.setOnShowListener { dialog ->
-            (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+            if (correctPosition != -1) {
+                (dialog as AlertDialog).getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = false
+            }
         }
         return dialog
     }

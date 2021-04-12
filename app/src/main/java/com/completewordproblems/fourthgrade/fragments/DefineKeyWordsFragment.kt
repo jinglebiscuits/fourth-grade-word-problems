@@ -38,8 +38,10 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         set(value) {
             Log.d(LOG_TAG, "progress: $progress")
             val currentPosition: Int = progress
-            ObjectAnimator.ofInt(progressBar, "progress", currentPosition, value)
-                .setDuration(100).start()
+            val animator = ObjectAnimator.ofInt(progressBar, "progress", currentPosition, value)
+                .setDuration(175)
+            animator.startDelay = 250
+            animator.start()
             field = value
         }
     private lateinit var progressBar: LinearProgressIndicator
@@ -48,7 +50,6 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
     private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
     private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
 
-    // TODO: 4/4/21 this needs to be set by the word problem
     private var progressTotal: Int = 100
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,7 +68,7 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         incompleteKeyWords = Wizard.getWordProblem().getKeyWords() as ArrayList<KeyWord>
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
         updateTextView()
-        progressTotal = incompleteKeyWords.size * 10
+        progressTotal = incompleteKeyWords.size * 100
         view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
         numeratorTextView = view.findViewById(R.id.numerator)
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
@@ -104,10 +105,10 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
 
     override fun onSubmit(keyWord: KeyWord, isCorrect: Boolean) {
         if (isCorrect) {
-            progress = min(progress + 10, progressTotal)
+            progress = min(progress + 100, progressTotal)
             incompleteKeyWords.remove(keyWord)
             updateTextView()
-            numeratorTextView.text = ((progressTotal / 10) - incompleteKeyWords.size).toString()
+            numeratorTextView.text = ((progressTotal / 100) - incompleteKeyWords.size).toString()
         }
     }
 
