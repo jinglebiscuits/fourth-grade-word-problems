@@ -4,6 +4,7 @@ import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.completewordproblems.fourthgrade.models.FourthGradeDictionary
 import com.completewordproblems.fourthgrade.models.KeyWord
 
 class VocabularyDialogFragment(
@@ -15,6 +16,9 @@ class VocabularyDialogFragment(
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return AlertDialog.Builder(requireContext())
             .setTitle("Select the correct definition for: ${keyWord.keyWord}")
+            .setMessage(
+                FourthGradeDictionary.getWord(keyWord.keyWord)?.correctDefinition ?: "empty"
+            )
             .setPositiveButton(
                 "Submit"
             ) { _, _ -> vocabularyDialogListener.onSubmit(keyWord) }
