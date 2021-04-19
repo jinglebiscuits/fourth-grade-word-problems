@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<word_problems>
+    <problem id="1">
+        <source>
+            <title>Go Math!</title>
+            <page>117</page>
+        </source>
+        <word_problem_segments>
+            <segment>
+                <text>At Memorial Hospital, 9 of the 12 babies born on Tuesday were boys.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>In simplest form, what fraction of the babies born on Tuesday were boys?</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>true</is_main_objective>
+                <key_words>
+                    <start>3</start>
+                    <end>15</end>
+                    <word>simplest form</word>
+                    <concept>
+                        <standards>
+                            <standard>
+                                <type>ALABAMA</type>
+                                <id>13</id>
+                            </standard>
+                        </standards>
+                    </concept>
+                </key_words>
+            </segment>
+        </word_problem_segments>
+    </problem>
+    <problem id="2">
+<!--        This problem doesn't have a concept in any one segment.-->
+        <source>
+            <title>Go Math!</title>
+            <page>118</page>
+        </source>
+        <word_problem_segments>
+            <segment>
+                <text>Ashley bought 4 packages of juice boxes.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>There are 6 juice boxes in each package.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>She gave 2 juice boxes to each of 3 friends.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>How many juice boxes does Ashley have left?</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>true</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+        </word_problem_segments>
+    </problem>
+    <problem id="3">
+        <!--        This problem doesn't have a concept in any one segment.-->
+        <source>
+            <title>Go Math!</title>
+            <page>119</page>
+        </source>
+        <word_problem_segments>
+            <segment>
+                <text>Adam drew two same size rectangles and divided them into the same number of equal parts.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>He shaded 1/3 of one rectangle and 1/4 of the other rectangle.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>What is the least number of parts into which both rectangles could be divided?</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>true</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+        </word_problem_segments>
+    </problem>
+    <problem id="4">
+        <!--        This problem doesn't have a concept in any one segment.-->
+        <source>
+            <title>Go Math!</title>
+            <page>123</page>
+        </source>
+        <word_problem_segments>
+            <segment>
+                <text>Erika ran 3/8 mile.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>Maria ran 3/4 mile.</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>false</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+            <segment>
+                <text>Who ran farther?</text>
+                <is_necessary>true</is_necessary>
+                <is_main_objective>true</is_main_objective>
+                <key_words>
+                </key_words>
+            </segment>
+        </word_problem_segments>
+    </problem>
+</word_problems>

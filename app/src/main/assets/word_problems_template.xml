@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<word_problems>
+    <problem id="1">
+        <word_problem_segments>
+            <segment>
+                <text></text>
+                <is_necessary></is_necessary>
+                <is_main_objective></is_main_objective>
+                <key_words>
+                    <start></start>
+                    <end></end>
+                    <word></word>
+                    <concept>
+                        <standards>
+
+                        </standards>
+                    </concept>
+                </key_words>
+            </segment>
+        </word_problem_segments>
+    </problem>
+</word_problems>

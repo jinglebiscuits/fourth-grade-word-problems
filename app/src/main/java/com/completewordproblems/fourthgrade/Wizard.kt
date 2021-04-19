@@ -1,9 +1,11 @@
 package com.completewordproblems.fourthgrade
 
+import android.content.Context
 import com.completewordproblems.fourthgrade.models.Concept
 import com.completewordproblems.fourthgrade.models.KeyWord
 import com.completewordproblems.fourthgrade.models.WordProblem
 import com.completewordproblems.fourthgrade.models.WordProblemSegment
+import java.io.InputStream
 
 object Wizard {
 
@@ -39,5 +41,12 @@ object Wizard {
         wordProblem.segments = text
 
         return wordProblem
+    }
+
+    fun getWordProblems(context: Context): List<WordProblem> {
+        val assetManager = context.assets
+        val inputStream: InputStream = assetManager.open("word_problems.xml")
+        val parser = WordProblemXmlParser()
+        return parser.parse(inputStream)
     }
 }
