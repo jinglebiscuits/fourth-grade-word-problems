@@ -65,7 +65,7 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
-        incompleteKeyWords = Wizard.getWordProblem().getKeyWords() as ArrayList<KeyWord>
+        incompleteKeyWords = Wizard.currentProblem.getKeyWords() as ArrayList<KeyWord>
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
         updateTextView()
         progressTotal = incompleteKeyWords.size * 100
@@ -89,7 +89,7 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
 
     private fun updateTextView() {
         val ss =
-            SpannableString(Wizard.getWordProblem().getWordProblemText())
+            SpannableString(Wizard.currentProblem.getWordProblemText())
         incompleteKeyWords.forEach {
             ss.setSpan(object : ClickableSpan() {
                 override fun onClick(widget: View) {

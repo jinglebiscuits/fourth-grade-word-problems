@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
-import com.completewordproblems.fourthgrade.models.WordProblem
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -51,9 +50,7 @@ class ReadTheProblemFragment : Fragment(), TextToSpeech.OnInitListener {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_read_the_problem, container, false)
         val text: TextView = view.findViewById(R.id.word_problem_text)
-        var wordProblems: List<WordProblem>? = null
-        context?.let { wordProblems = Wizard.getWordProblems(it) }
-        text.text = wordProblems?.random()?.getWordProblemText() ?: Wizard.getWordProblem().getWordProblemText()
+        text.text = Wizard.currentProblem.getWordProblemText()
         wordProblemText = text.text as String
         val readAloudButton: View = view.findViewById(R.id.read_aloud_button)
         readAloudButton.setOnClickListener(View.OnClickListener {

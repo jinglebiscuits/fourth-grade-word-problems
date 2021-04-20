@@ -1,11 +1,11 @@
 package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 
@@ -40,7 +40,8 @@ class PracticeFragment : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
         view.findViewById<Button>(R.id.start_button).setOnClickListener {
             // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController().navigate(R.id.action_practiceFragment_to_readTheProblemFragment)
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_readTheProblemFragment)
         }
         return view
     }

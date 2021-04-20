@@ -9,7 +9,13 @@ import java.io.InputStream
 
 object Wizard {
 
-    fun getWordProblem(): WordProblem {
+    lateinit var currentProblem: WordProblem
+
+    fun setCurrentProblem(context: Context) {
+        currentProblem = getWordProblems(context).random()
+    }
+
+    fun getAshleyWordProblem(): WordProblem {
         val wordProblem = WordProblem()
         wordProblem.answer = "4"
         val segment1 = WordProblemSegment(

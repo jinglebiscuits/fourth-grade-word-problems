@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -38,6 +39,7 @@ class MyNavigationFragment : Fragment() {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_my_navigation, container, false)
         view.findViewById<Button>(R.id.practice_button).setOnClickListener {
+            context?.let { it1 -> Wizard.setCurrentProblem(it1) }
             view.findNavController().navigate(R.id.action_myNavigationFragment_to_practiceFragment)
         }
         view.findViewById<Button>(R.id.growth_button).setOnClickListener {
