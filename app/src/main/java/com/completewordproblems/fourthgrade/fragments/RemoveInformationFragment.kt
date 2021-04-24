@@ -39,7 +39,7 @@ class RemoveInformationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_draw_scene, container, false)
+        val view: View = inflater.inflate(R.layout.fragment_remove_information, container, false)
         wordProblemTextView = view.findViewById(R.id.word_problem_text)
         wordProblemTextView.text = Wizard.currentProblem.getWordProblemText()
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
