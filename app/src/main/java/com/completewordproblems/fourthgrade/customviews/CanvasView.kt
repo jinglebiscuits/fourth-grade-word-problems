@@ -15,6 +15,7 @@ class CanvasView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context) {
     var path = Path()
+    val paths = mutableListOf<Path>()
     var paint = Paint()
     var xPos = 0.0f
     var yPos = 0.0f
@@ -41,9 +42,11 @@ class CanvasView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.drawPath(path, paint)
+        paths.forEach { canvas?.drawPath(it, paint) }
     }
 
     private fun startTouch(x: Float, y: Float) {
+        path = Path()
         path.moveTo(x, y)
         xPos = x
         yPos = y
@@ -60,12 +63,15 @@ class CanvasView @JvmOverloads constructor(
     }
 
     public fun clearCanvas() {
+        paths.forEach { it.reset() }
+        paths.clear()
         path.reset()
         invalidate()
     }
 
     private fun upTouch() {
         path.lineTo(xPos, yPos)
+        paths.add(path)
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
