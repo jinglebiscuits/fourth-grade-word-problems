@@ -1,11 +1,16 @@
 package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -22,6 +27,8 @@ class DrawSceneFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var wordProblemTextView: TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +40,30 @@ class DrawSceneFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_draw_scene, container, false)
+    ): View {
+        val view: View = inflater.inflate(R.layout.fragment_draw_scene, container, false)
+        wordProblemTextView = view.findViewById(R.id.word_problem_text)
+        wordProblemTextView.text = Wizard.currentProblem.getWordProblemText()
+
+        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
+            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_createExpressionFragment)
+        })
+        view.findViewById<View>(R.id.back_button).setOnClickListener {
+            view.findNavController()
+                .navigate(R.id.action_practiceFragment_to_removeInformationFragment)
+        }
+        val saveButton: Button = view.findViewById(R.id.save_drawing)
+        saveButton.setOnClickListener {
+            saveBitmap()
+            saveButton.isEnabled = false
+        }
+        return view
+    }
+
+    private fun saveBitmap() {
+        Log.d("TAG", "save bitmap")
     }
 
     companion object {
