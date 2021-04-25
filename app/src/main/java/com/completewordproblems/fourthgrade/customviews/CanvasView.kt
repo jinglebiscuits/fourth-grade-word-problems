@@ -41,7 +41,7 @@ class CanvasView @JvmOverloads constructor(
         erasePaint.color = Color.WHITE
         erasePaint.style = Paint.Style.STROKE
         erasePaint.strokeJoin = Paint.Join.ROUND
-        erasePaint.strokeWidth = 24f
+        erasePaint.strokeWidth = 30f
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {

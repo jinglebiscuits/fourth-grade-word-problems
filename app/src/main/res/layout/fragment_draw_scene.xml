@@ -21,10 +21,9 @@
 
     <com.completewordproblems.fourthgrade.customviews.DrawLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toTopOf="@id/strategy_navigation_view"
-        android:background="@color/secondary_color_dark">
-    </com.completewordproblems.fourthgrade.customviews.DrawLayout>
+        android:layout_height="240dp"
+        android:background="@android:color/darker_gray"
+        app:layout_constraintBottom_toTopOf="@id/strategy_navigation_view" />
 
     <include
         android:id="@+id/strategy_navigation_view"
