@@ -3,6 +3,7 @@ package com.completewordproblems.fourthgrade.customviews
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import kotlin.math.abs
@@ -13,7 +14,7 @@ class CanvasView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : View(context) {
+) : View(context, attrs) {
     var path = Path()
     val paths = mutableListOf<Path>()
     var paint = Paint()
@@ -60,6 +61,15 @@ class CanvasView @JvmOverloads constructor(
             xPos = x
             yPos = y
         }
+    }
+
+    fun undo() {
+        try {
+            paths.removeLast().reset()
+        } catch (e: NoSuchElementException) {
+            Log.e("TAG", e.message.toString())
+        }
+        invalidate()
     }
 
     public fun clearCanvas() {

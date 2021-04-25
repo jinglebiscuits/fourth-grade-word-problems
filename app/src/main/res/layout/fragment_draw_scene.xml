@@ -19,15 +19,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <FrameLayout
+    <com.completewordproblems.fourthgrade.customviews.DrawLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         app:layout_constraintBottom_toTopOf="@id/strategy_navigation_view"
         android:background="@color/secondary_color_dark">
-        <com.completewordproblems.fourthgrade.customviews.CanvasView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </FrameLayout>
+    </com.completewordproblems.fourthgrade.customviews.DrawLayout>
 
     <include
         android:id="@+id/strategy_navigation_view"
