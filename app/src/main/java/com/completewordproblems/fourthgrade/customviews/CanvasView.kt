@@ -9,6 +9,8 @@ import android.view.View
 import kotlin.math.abs
 
 private const val TOLERANCE = 5
+private const val DRAW_MODE_DRAW = 0
+private const val DRAW_MODE_ERASE = 1
 
 class CanvasView @JvmOverloads constructor(
     context: Context,
@@ -16,21 +18,30 @@ class CanvasView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs) {
     var path = Path()
-    val paths = mutableListOf<Path>()
-    var paint = Paint()
+    private val penPaths = mutableListOf<Path>()
+    private val erasePaths = mutableListOf<Path>()
+    var penPaint = Paint()
+    var erasePaint = Paint()
     var xPos = 0.0f
     var yPos = 0.0f
+    var drawMode = DRAW_MODE_DRAW
     lateinit var bitmap: Bitmap
     lateinit var canvas: Canvas
 
     init {
-        paint.isAntiAlias = true
-        paint.color = Color.RED
-        paint.style = Paint.Style.STROKE
-        paint.strokeJoin = Paint.Join.ROUND
+        penPaint.isAntiAlias = true
+        penPaint.color = Color.BLACK
+        penPaint.style = Paint.Style.STROKE
+        penPaint.strokeJoin = Paint.Join.ROUND
 
         // TODO: 4/24/21 make this density independent
-        paint.strokeWidth = 12f
+        penPaint.strokeWidth = 12f
+
+        erasePaint.isAntiAlias = true
+        erasePaint.color = Color.WHITE
+        erasePaint.style = Paint.Style.STROKE
+        erasePaint.strokeJoin = Paint.Join.ROUND
+        erasePaint.strokeWidth = 18f
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -42,8 +53,13 @@ class CanvasView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.drawPath(path, paint)
-        paths.forEach { canvas?.drawPath(it, paint) }
+        penPaths.forEach { canvas?.drawPath(it, penPaint) }
+        erasePaths.forEach { canvas?.drawPath(it, erasePaint) }
+        if (drawMode == DRAW_MODE_DRAW) {
+            canvas?.drawPath(path, penPaint)
+        } else {
+            canvas?.drawPath(path, erasePaint)
+        }
     }
 
     private fun startTouch(x: Float, y: Float) {
@@ -63,9 +79,17 @@ class CanvasView @JvmOverloads constructor(
         }
     }
 
+    public fun switchToErase() {
+        drawMode = DRAW_MODE_ERASE
+    }
+
+    public fun switchToDraw() {
+        drawMode = DRAW_MODE_DRAW
+    }
+
     fun undo() {
         try {
-            paths.removeLast().reset()
+            penPaths.removeLast().reset()
         } catch (e: NoSuchElementException) {
             Log.e("TAG", e.message.toString())
         }
@@ -73,15 +97,21 @@ class CanvasView @JvmOverloads constructor(
     }
 
     public fun clearCanvas() {
-        paths.forEach { it.reset() }
-        paths.clear()
+        penPaths.forEach { it.reset() }
+        penPaths.clear()
+        erasePaths.forEach { it.reset() }
+        erasePaths.clear()
         path.reset()
         invalidate()
     }
 
     private fun upTouch() {
         path.lineTo(xPos, yPos)
-        paths.add(path)
+        if (drawMode == DRAW_MODE_DRAW) {
+            penPaths.add(path)
+        } else {
+            erasePaths.add(path)
+        }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
