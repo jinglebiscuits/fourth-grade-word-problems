@@ -1,11 +1,13 @@
 package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
@@ -52,7 +54,16 @@ class DrawSceneFragment : Fragment() {
             view.findNavController()
                 .navigate(R.id.action_practiceFragment_to_removeInformationFragment)
         }
+        val saveButton: Button = view.findViewById(R.id.save_drawing)
+        saveButton.setOnClickListener {
+            saveBitmap()
+            saveButton.isEnabled = false
+        }
         return view
+    }
+
+    private fun saveBitmap() {
+        Log.d("TAG", "save bitmap")
     }
 
     companion object {

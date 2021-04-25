@@ -2,16 +2,20 @@ package com.completewordproblems.fourthgrade.customviews
 
 import android.content.Context
 import android.util.AttributeSet
+import android.util.Log
+import android.view.View.OnClickListener
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.view.children
 import com.completewordproblems.fourthgrade.R
 
-class DrawLayout (
+class DrawLayout(
     context: Context,
     attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs) {
+
+    lateinit var saveButton: Button
 
     init {
         inflate(context, R.layout.draw_layout, this)
@@ -30,5 +34,11 @@ class DrawLayout (
                 canvasView.switchToErase()
             }
         }
+        canvasView.drawLayout = this
+        saveButton = findViewById(R.id.save_drawing)
+    }
+
+    fun onDrawingChanged() {
+        saveButton.isEnabled = true
     }
 }

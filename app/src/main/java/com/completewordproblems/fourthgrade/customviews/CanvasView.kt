@@ -27,6 +27,7 @@ class CanvasView @JvmOverloads constructor(
     var drawMode = DRAW_MODE_DRAW
     lateinit var bitmap: Bitmap
     lateinit var canvas: Canvas
+    lateinit var drawLayout: DrawLayout
 
     init {
         penPaint.isAntiAlias = true
@@ -64,6 +65,7 @@ class CanvasView @JvmOverloads constructor(
         } else {
             canvas?.drawPath(path, erasePaint)
         }
+        drawLayout.onDrawingChanged()
     }
 
     private fun startTouch(x: Float, y: Float) {
