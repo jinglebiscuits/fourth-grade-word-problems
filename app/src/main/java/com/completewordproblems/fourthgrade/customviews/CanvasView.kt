@@ -1,7 +1,10 @@
 package com.completewordproblems.fourthgrade.customviews
 
 import android.content.Context
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.util.AttributeSet
 import android.util.Log
 import android.view.MotionEvent
@@ -9,17 +12,14 @@ import android.view.View
 import kotlin.math.abs
 
 private const val TOLERANCE = 5
-private const val DRAW_MODE_DRAW = 0
-private const val DRAW_MODE_ERASE = 1
 
 class CanvasView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs) {
-    var path = Path()
-    private val penPaths = mutableListOf<Path>()
-    private val erasePaths = mutableListOf<Path>()
+    var path = MyPath(DRAW_MODE_DRAW)
+    private val paths = mutableListOf<MyPath>()
     var penPaint = Paint()
     var erasePaint = Paint()
     var xPos = 0.0f
@@ -41,7 +41,7 @@ class CanvasView @JvmOverloads constructor(
         erasePaint.color = Color.WHITE
         erasePaint.style = Paint.Style.STROKE
         erasePaint.strokeJoin = Paint.Join.ROUND
-        erasePaint.strokeWidth = 18f
+        erasePaint.strokeWidth = 24f
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -53,8 +53,12 @@ class CanvasView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        penPaths.forEach { canvas?.drawPath(it, penPaint) }
-        erasePaths.forEach { canvas?.drawPath(it, erasePaint) }
+        paths.forEach {
+            canvas?.drawPath(
+                it,
+                if (it.type == DRAW_MODE_DRAW) penPaint else erasePaint
+            )
+        }
         if (drawMode == DRAW_MODE_DRAW) {
             canvas?.drawPath(path, penPaint)
         } else {
@@ -63,7 +67,7 @@ class CanvasView @JvmOverloads constructor(
     }
 
     private fun startTouch(x: Float, y: Float) {
-        path = Path()
+        path = MyPath(drawMode)
         path.moveTo(x, y)
         xPos = x
         yPos = y
@@ -89,7 +93,7 @@ class CanvasView @JvmOverloads constructor(
 
     fun undo() {
         try {
-            penPaths.removeLast().reset()
+            paths.removeLast().reset()
         } catch (e: NoSuchElementException) {
             Log.e("TAG", e.message.toString())
         }
@@ -97,21 +101,16 @@ class CanvasView @JvmOverloads constructor(
     }
 
     public fun clearCanvas() {
-        penPaths.forEach { it.reset() }
-        penPaths.clear()
-        erasePaths.forEach { it.reset() }
-        erasePaths.clear()
+        paths.forEach { it.reset() }
+        paths.clear()
         path.reset()
         invalidate()
     }
 
     private fun upTouch() {
         path.lineTo(xPos, yPos)
-        if (drawMode == DRAW_MODE_DRAW) {
-            penPaths.add(path)
-        } else {
-            erasePaths.add(path)
-        }
+        paths.add(path)
+        paths.sortBy { it.creationTime }
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
@@ -133,5 +132,10 @@ class CanvasView @JvmOverloads constructor(
             }
         }
         return true
+    }
+
+    companion object {
+        public const val DRAW_MODE_DRAW = 0
+        public const val DRAW_MODE_ERASE = 1
     }
 }
