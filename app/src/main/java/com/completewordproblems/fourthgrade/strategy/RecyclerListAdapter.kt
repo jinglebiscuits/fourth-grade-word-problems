@@ -1,6 +1,7 @@
 package com.completewordproblems.fourthgrade.strategy
 
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -9,11 +10,27 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.models.Strategy
+
+private const val INSPECT_KEY_WORDS = "Inspect key words"
+private const val WHAT_ARE_YOU_LOOKING_FOR = "What are you looking for?"
+private const val WHAT_INFORMATION_IS_NEEDED = "What information is needed?"
+private const val DRAW_THE_SCENE = "Draw the scene"
+private const val WRITE_THE_EQUATION = "Write the equation"
+private const val SOLVE_THE_PROBLEM = "Solve the problem"
 
 class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
     RecyclerView.Adapter<RecyclerListAdapter.ItemViewHolder>(), ItemTouchHelperAdapter {
 
-    val items = arrayListOf<String>("one", "two", "three", "four")
+    val strategies = arrayListOf<Strategy>(
+        Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+        Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
+    )
+    val stragiesToUse = arrayListOf<Strategy>(
+        Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+        Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
+    )
+    val strategiesNotUsed = arrayListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
@@ -22,7 +39,7 @@ class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.textView.text = items[position]
+        holder.textView.text = stragiesToUse[position].displayText
         holder.handleView.setOnTouchListener(object : View.OnTouchListener {
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
                 if (event?.action ?: -1 == MotionEvent.ACTION_DOWN) {
@@ -35,17 +52,18 @@ class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
     }
 
     override fun getItemCount(): Int {
-        return items.size
+        return stragiesToUse.size
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        val prev: String = items.removeAt(fromPosition)
-        items.add(if (toPosition > fromPosition) (toPosition - 1) else (toPosition), prev)
+        val prev: Strategy = stragiesToUse.removeAt(fromPosition)
+        stragiesToUse.add(if (toPosition > fromPosition) (toPosition - 1) else (toPosition), prev)
         notifyItemMoved(fromPosition, toPosition)
     }
 
     override fun onItemDismiss(position: Int) {
-        items.removeAt(position)
+        val dismissed = stragiesToUse.removeAt(position)
+        dragStartListener.onItemDismissed(dismissed)
         notifyItemRemoved(position)
     }
 

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.models.Strategy
 import com.completewordproblems.fourthgrade.strategy.OnDragStartListener
 import com.completewordproblems.fourthgrade.strategy.RecyclerListAdapter
 import com.completewordproblems.fourthgrade.strategy.SimpleItemTouchHelperCallback
@@ -77,5 +78,9 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
 
     override fun onDragStarted(viewHolder: RecyclerView.ViewHolder) {
         Log.d("TAG", "onDragStarted")
+    }
+
+    override fun onItemDismissed(strategy: Strategy) {
+        Log.d("JEDI", "strategy dismissed $strategy")
     }
 }
