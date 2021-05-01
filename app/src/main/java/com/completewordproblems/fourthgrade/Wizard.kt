@@ -14,6 +14,18 @@ object Wizard {
         currentProblem = getWordProblems(context).random()
     }
 
+    fun getTransitionId() : Int {
+        return when (currentStudent.strategies[currentStrategyIndex]) {
+            Strategy.READ_THE_PROBLEM -> R.id.action_practiceFragment_to_readTheProblemFragment
+            Strategy.INSPECT_KEY_WORDS -> R.id.action_practiceFragment_to_defineKeyWordsFragment
+            Strategy.WHAT_ARE_YOU_LOOKING_FOR -> R.id.action_practiceFragment_to_whatAreYouLookingForFragment
+            Strategy.WHAT_INFORMATION_IS_NEEDED -> R.id.action_practiceFragment_to_whatInformationIsNeededFragment
+            Strategy.DRAW_THE_SCENE -> R.id.action_practiceFragment_to_drawSceneFragment
+            Strategy.WRITE_THE_EQUATION -> R.id.action_practiceFragment_to_createExpressionFragment
+            Strategy.SOLVE_THE_PROBLEM -> R.id.action_practiceFragment_to_solveFragment
+        }
+    }
+
     fun onLogin(studentId: String) {
         //SW not using studentId yet
         val strategies = arrayListOf<Strategy>(

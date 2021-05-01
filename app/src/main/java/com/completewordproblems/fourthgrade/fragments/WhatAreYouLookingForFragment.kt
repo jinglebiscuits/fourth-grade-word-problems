@@ -46,7 +46,7 @@ class WhatAreYouLookingForFragment : Fragment() {
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
             view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_whatIsGivenFragment)
+                .navigate(R.id.action_practiceFragment_to_whatInformationIsNeededFragment)
         })
         view.findViewById<View>(R.id.back_button).setOnClickListener {
             view.findNavController().navigate(R.id.practiceFragment)

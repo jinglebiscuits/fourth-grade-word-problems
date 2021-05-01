@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
+import com.completewordproblems.fourthgrade.models.Strategy
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -51,8 +52,8 @@ class DrawSceneFragment : Fragment() {
                 .navigate(R.id.action_practiceFragment_to_createExpressionFragment)
         })
         view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_removeInformationFragment)
+            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
+            view.findNavController().navigate(Wizard.getTransitionId())
         }
         val saveButton: Button = view.findViewById(R.id.save_drawing)
         saveButton.setOnClickListener {

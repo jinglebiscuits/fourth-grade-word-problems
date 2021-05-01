@@ -58,9 +58,8 @@ class ReadTheProblemFragment : Fragment(), TextToSpeech.OnInitListener {
             tts.speak(wordProblemText, TextToSpeech.QUEUE_FLUSH, null, "word_problem")
         })
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_defineKeyWordsFragment)
+            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
+            view.findNavController().navigate(Wizard.getTransitionId())
         })
         view.findViewById<View>(R.id.back_button).setOnClickListener {
             view.findNavController().navigate(R.id.practiceFragment)

@@ -41,18 +41,8 @@ class PracticeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
         view.findViewById<Button>(R.id.start_button).setOnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            val fragTransitionId: Int = when (Wizard.currentStudent.strategies[Wizard.currentStrategyIndex]) {
-                Strategy.READ_THE_PROBLEM -> R.id.action_practiceFragment_to_readTheProblemFragment
-                Strategy.INSPECT_KEY_WORDS -> R.id.action_practiceFragment_to_defineKeyWordsFragment
-                Strategy.WHAT_ARE_YOU_LOOKING_FOR -> R.id.action_practiceFragment_to_whatAreYouLookingForFragment
-                Strategy.WHAT_INFORMATION_IS_NEEDED -> R.id.action_practiceFragment_to_whatIsGivenFragment
-                Strategy.DRAW_THE_SCENE -> R.id.action_practiceFragment_to_drawSceneFragment
-                Strategy.WRITE_THE_EQUATION -> R.id.action_practiceFragment_to_createExpressionFragment
-                Strategy.SOLVE_THE_PROBLEM -> R.id.action_practiceFragment_to_solveFragment
-            }
             view.findNavController()
-                .navigate(fragTransitionId)
+                .navigate(Wizard.getTransitionId())
         }
         return view
     }
