@@ -48,7 +48,7 @@
     </fragment>
     <fragment
         android:id="@+id/readTheProblemFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.ReadTheProblemFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.ReadTheProblemFragment"
         android:label="fragment_read_the_problem"
         tools:layout="@layout/fragment_read_the_problem">
 
@@ -76,7 +76,7 @@
     </fragment>
     <fragment
         android:id="@+id/defineKeyWordsFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.DefineKeyWordsFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.DefineKeyWordsFragment"
         android:label="fragment_define_key_words"
         tools:layout="@layout/fragment_define_key_words">
         <action
@@ -113,7 +113,7 @@
         tools:layout="@layout/fragment_strategy_algorithm" />
     <fragment
         android:id="@+id/solveFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.SolveFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.SolveFragment"
         android:label="fragment_solve"
         tools:layout="@layout/fragment_solve">
         <action
@@ -140,7 +140,7 @@
     </fragment>
     <fragment
         android:id="@+id/createExpressionFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.CreateExpressionFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.CreateExpressionFragment"
         android:label="fragment_create_expression"
         tools:layout="@layout/fragment_create_expression">
         <action
@@ -167,7 +167,7 @@
     </fragment>
     <fragment
         android:id="@+id/drawSceneFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.DrawSceneFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.DrawSceneFragment"
         android:label="fragment_draw_scene"
         tools:layout="@layout/fragment_draw_scene">
         <action
@@ -194,7 +194,7 @@
     </fragment>
     <fragment
         android:id="@+id/whatInformationIsNeededFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.WhatInformationIsNeeded"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.WhatInformationIsNeeded"
         android:label="fragment_what_is_given"
         tools:layout="@layout/fragment_what_information_is_needed">
         <action
@@ -221,7 +221,7 @@
     </fragment>
     <fragment
         android:id="@+id/whatAreYouLookingForFragment"
-        android:name="com.completewordproblems.fourthgrade.fragments.WhatAreYouLookingForFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.strategies.WhatAreYouLookingForFragment"
         android:label="fragment_what_are_you_looking_for"
         tools:layout="@layout/fragment_what_are_you_looking_for">
         <action

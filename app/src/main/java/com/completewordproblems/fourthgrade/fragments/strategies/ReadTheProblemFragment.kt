@@ -1,4 +1,4 @@
-package com.completewordproblems.fourthgrade.fragments
+package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
+import com.completewordproblems.fourthgrade.fragments.strategies.StrategyFragmentBase
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -26,7 +27,7 @@ private const val LOG_TAG = "ReadTheProblemFragment"
  * Use the [ReadTheProblemFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ReadTheProblemFragment : Fragment(), TextToSpeech.OnInitListener {
+class ReadTheProblemFragment : StrategyFragmentBase("Read the problem"), TextToSpeech.OnInitListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

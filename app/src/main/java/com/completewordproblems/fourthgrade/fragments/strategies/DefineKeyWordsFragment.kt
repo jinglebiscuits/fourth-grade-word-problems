@@ -1,4 +1,4 @@
-package com.completewordproblems.fourthgrade.fragments
+package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
@@ -30,7 +30,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDialogListener {
+class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), VocabularyDialogFragment.VocabularyDialogListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null

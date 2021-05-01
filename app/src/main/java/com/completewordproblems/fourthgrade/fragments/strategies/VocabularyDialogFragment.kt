@@ -1,4 +1,4 @@
-package com.completewordproblems.fourthgrade.fragments
+package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.app.Dialog
 import android.os.Bundle
