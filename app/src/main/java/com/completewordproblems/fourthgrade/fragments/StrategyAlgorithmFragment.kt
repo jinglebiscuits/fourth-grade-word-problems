@@ -11,37 +11,35 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.models.Strategy
-import com.completewordproblems.fourthgrade.strategy.OnDragStartListener
-import com.completewordproblems.fourthgrade.strategy.RecyclerListAdapter
-import com.completewordproblems.fourthgrade.strategy.SimpleItemTouchHelperCallback
-import com.completewordproblems.fourthgrade.strategy.UnusedStrategiesListAdapter
+import com.completewordproblems.fourthgrade.strategy.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
+class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAddedListener {
 
     lateinit var itemTouchHelper: ItemTouchHelper
     lateinit var unusedStrategiesListView: RecyclerView
     lateinit var unusedStrategiesListAdapter: UnusedStrategiesListAdapter
+    lateinit var usedStrategiesListAdapter: RecyclerListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_strategy_algorithm, container, false)
-        val adapter = RecyclerListAdapter(this)
+        usedStrategiesListAdapter = RecyclerListAdapter(this)
         val usedStrategiesRecyclerView: RecyclerView = view.findViewById(R.id.strategy_list)
         usedStrategiesRecyclerView.setHasFixedSize(true)
         usedStrategiesRecyclerView.layoutManager = LinearLayoutManager(activity)
-        usedStrategiesRecyclerView.adapter = adapter
-        val callback: ItemTouchHelper.Callback = SimpleItemTouchHelperCallback(adapter)
+        usedStrategiesRecyclerView.adapter = usedStrategiesListAdapter
+        val callback: ItemTouchHelper.Callback = SimpleItemTouchHelperCallback(usedStrategiesListAdapter)
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(usedStrategiesRecyclerView)
         unusedStrategiesListView = view.findViewById(R.id.unused_strategies_list)
-        unusedStrategiesListAdapter = UnusedStrategiesListAdapter()
+        unusedStrategiesListAdapter = UnusedStrategiesListAdapter(this)
         unusedStrategiesListView.setHasFixedSize(true)
         unusedStrategiesListView.layoutManager = LinearLayoutManager(activity)
         unusedStrategiesListView.adapter = unusedStrategiesListAdapter
@@ -75,5 +73,9 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
     override fun onItemDismissed(strategy: Strategy) {
         Log.d("JEDI", "strategy dismissed $strategy")
         unusedStrategiesListAdapter.addStrategy(strategy)
+    }
+
+    override fun onStrategyAdded(strategy: Strategy) {
+        usedStrategiesListAdapter.addStrategy(strategy)
     }
 }

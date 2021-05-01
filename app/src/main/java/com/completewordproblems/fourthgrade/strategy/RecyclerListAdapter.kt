@@ -58,6 +58,10 @@ class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
         notifyItemRemoved(position)
     }
 
+    fun addStrategy(strategy: Strategy) {
+        stragiesToUse.add(strategy)
+    }
+
     class ItemViewHolder(private val itemView: View) : RecyclerView.ViewHolder(itemView),
         ItemTouchHelperViewHolder {
 

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.models.Strategy
 
-class UnusedStrategiesListAdapter :
+class UnusedStrategiesListAdapter(val onStrategyAddedListener: OnStrategyAddedListener) :
     RecyclerView.Adapter<UnusedStrategiesListAdapter.UnusedItemViewHolder>() {
 
     private val unusedStrategies = arrayListOf<Strategy>()
@@ -23,6 +23,11 @@ class UnusedStrategiesListAdapter :
 
     override fun onBindViewHolder(holder: UnusedItemViewHolder, position: Int) {
         holder.textView.text = unusedStrategies[position].displayText
+        holder.addButton.setOnClickListener {
+            onStrategyAddedListener.onStrategyAdded(unusedStrategies[position])
+            unusedStrategies.removeAt(position)
+            notifyDataSetChanged()
+        }
     }
 
     override fun getItemCount(): Int {
