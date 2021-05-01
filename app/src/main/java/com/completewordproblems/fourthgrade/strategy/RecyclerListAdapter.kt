@@ -1,7 +1,6 @@
 package com.completewordproblems.fourthgrade.strategy
 
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -30,10 +29,9 @@ class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
         Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
         Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
     )
-    val strategiesNotUsed = arrayListOf<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_main, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.used_strategy_layout, parent, false)
         val itemViewHolder = ItemViewHolder(view)
         return itemViewHolder
     }
