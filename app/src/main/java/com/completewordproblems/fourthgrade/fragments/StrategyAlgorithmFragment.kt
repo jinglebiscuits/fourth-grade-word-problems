@@ -5,11 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
 import com.completewordproblems.fourthgrade.models.Strategy
 import com.completewordproblems.fourthgrade.strategy.*
 
@@ -35,7 +37,8 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
         usedStrategiesRecyclerView.setHasFixedSize(true)
         usedStrategiesRecyclerView.layoutManager = LinearLayoutManager(activity)
         usedStrategiesRecyclerView.adapter = usedStrategiesListAdapter
-        val callback: ItemTouchHelper.Callback = SimpleItemTouchHelperCallback(usedStrategiesListAdapter)
+        val callback: ItemTouchHelper.Callback =
+            SimpleItemTouchHelperCallback(usedStrategiesListAdapter)
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(usedStrategiesRecyclerView)
         unusedStrategiesListView = view.findViewById(R.id.unused_strategies_list)
@@ -43,6 +46,13 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
         unusedStrategiesListView.setHasFixedSize(true)
         unusedStrategiesListView.layoutManager = LinearLayoutManager(activity)
         unusedStrategiesListView.adapter = unusedStrategiesListAdapter
+
+        view.findViewById<Button>(R.id.save_strategy).setOnClickListener {
+            //SW temporary hack. remove
+            Wizard.onLogin("Scott")
+
+            Wizard.currentStudent.strategies = usedStrategiesListAdapter.stragiesToUse
+        }
         return view
     }
 
@@ -78,4 +88,6 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
     override fun onStrategyAdded(strategy: Strategy) {
         usedStrategiesListAdapter.addStrategy(strategy)
     }
+
+
 }

@@ -1,18 +1,26 @@
 package com.completewordproblems.fourthgrade
 
 import android.content.Context
-import com.completewordproblems.fourthgrade.models.Concept
-import com.completewordproblems.fourthgrade.models.KeyWord
-import com.completewordproblems.fourthgrade.models.WordProblem
-import com.completewordproblems.fourthgrade.models.WordProblemSegment
+import com.completewordproblems.fourthgrade.models.*
 import java.io.InputStream
 
 object Wizard {
 
     lateinit var currentProblem: WordProblem
+    lateinit var currentStudent: Student
+    var currentStrategyIndex = 0
 
     fun setCurrentProblem(context: Context) {
         currentProblem = getWordProblems(context).random()
+    }
+
+    fun onLogin(studentId: String) {
+        //SW not using studentId yet
+        val strategies = arrayListOf<Strategy>(
+            Strategy.READ_THE_PROBLEM, Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+            Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
+        )
+        currentStudent = Student("Scott", 10, 4, listOf(), listOf(), strategies)
     }
 
     fun getAshleyWordProblem(): WordProblem {
