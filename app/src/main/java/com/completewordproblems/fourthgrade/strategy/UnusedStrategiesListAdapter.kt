@@ -12,7 +12,7 @@ import com.completewordproblems.fourthgrade.models.Strategy
 class UnusedStrategiesListAdapter :
     RecyclerView.Adapter<UnusedStrategiesListAdapter.UnusedItemViewHolder>() {
 
-    val unusedStrategies = arrayListOf<Strategy>()
+    private val unusedStrategies = arrayListOf<Strategy>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UnusedItemViewHolder {
         val view = LayoutInflater.from(parent.context)

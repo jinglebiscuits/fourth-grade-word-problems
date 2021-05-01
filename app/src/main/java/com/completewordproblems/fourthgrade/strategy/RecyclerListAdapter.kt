@@ -11,22 +11,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.models.Strategy
 
-private const val INSPECT_KEY_WORDS = "Inspect key words"
-private const val WHAT_ARE_YOU_LOOKING_FOR = "What are you looking for?"
-private const val WHAT_INFORMATION_IS_NEEDED = "What information is needed?"
-private const val DRAW_THE_SCENE = "Draw the scene"
-private const val WRITE_THE_EQUATION = "Write the equation"
-private const val SOLVE_THE_PROBLEM = "Solve the problem"
-
 class RecyclerListAdapter(val dragStartListener: OnDragStartListener) :
     RecyclerView.Adapter<RecyclerListAdapter.ItemViewHolder>(), ItemTouchHelperAdapter {
 
     val strategies = arrayListOf<Strategy>(
-        Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+        Strategy.READ_THE_PROBLEM, Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
         Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
     )
     val stragiesToUse = arrayListOf<Strategy>(
-        Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+        Strategy.READ_THE_PROBLEM, Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
         Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
     )
 

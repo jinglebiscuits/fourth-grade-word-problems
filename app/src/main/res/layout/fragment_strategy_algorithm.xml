@@ -43,7 +43,7 @@
     <FrameLayout
         android:id="@+id/unused_strategies"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
