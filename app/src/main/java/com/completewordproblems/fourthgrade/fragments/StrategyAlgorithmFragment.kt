@@ -25,6 +25,7 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
 
     lateinit var itemTouchHelper: ItemTouchHelper
     lateinit var unusedStrategiesListView: RecyclerView
+    lateinit var unusedStrategiesListAdapter: UnusedStrategiesListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,10 +41,10 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
         itemTouchHelper = ItemTouchHelper(callback)
         itemTouchHelper.attachToRecyclerView(usedStrategiesRecyclerView)
         unusedStrategiesListView = view.findViewById(R.id.unused_strategies_list)
-        val unusedStrategiesAdapter = UnusedStrategiesListAdapter()
+        unusedStrategiesListAdapter = UnusedStrategiesListAdapter()
         unusedStrategiesListView.setHasFixedSize(true)
         unusedStrategiesListView.layoutManager = LinearLayoutManager(activity)
-        unusedStrategiesListView.adapter = unusedStrategiesAdapter
+        unusedStrategiesListView.adapter = unusedStrategiesListAdapter
         return view
     }
 
@@ -73,5 +74,6 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener {
 
     override fun onItemDismissed(strategy: Strategy) {
         Log.d("JEDI", "strategy dismissed $strategy")
+        unusedStrategiesListAdapter.addStrategy(strategy)
     }
 }
