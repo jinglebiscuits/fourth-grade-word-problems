@@ -66,21 +66,13 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), Vocabul
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
         incompleteKeyWords = Wizard.currentProblem.getKeyWords() as ArrayList<KeyWord>
         setupWordProblemText(view)
+        setupNavigation(view)
         updateTextView()
         progressTotal = incompleteKeyWords.size * 100
         view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
         numeratorTextView = view.findViewById(R.id.numerator)
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
-
-        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
-            view.findNavController().navigate(Wizard.getTransitionId())
-        })
-        view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_readTheProblemFragment)
-        }
 
         return view
     }

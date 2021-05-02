@@ -8,9 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
-import com.completewordproblems.fourthgrade.Wizard
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -50,19 +48,14 @@ class ReadTheProblemFragment : StrategyFragmentBase("Read the problem"),
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_read_the_problem, container, false)
         setupWordProblemText(view)
+        setupNavigation(view)
         wordProblemText = wordProblemTextView.text as String
         val readAloudButton: View = view.findViewById(R.id.read_aloud_button)
         readAloudButton.setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 this tts might not be ready
             tts.speak(wordProblemText, TextToSpeech.QUEUE_FLUSH, null, "word_problem")
         })
-        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
-            view.findNavController().navigate(Wizard.getTransitionId())
-        })
-        view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController().navigate(R.id.practiceFragment)
-        }
+
         return view
     }
 

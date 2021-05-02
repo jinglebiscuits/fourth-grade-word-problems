@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -38,14 +37,7 @@ class WhatAreYouLookingForFragment : StrategyFragmentBase("What are you looking 
         val view: View =
             inflater.inflate(R.layout.fragment_what_are_you_looking_for, container, false)
         setupWordProblemText(view)
-        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_whatInformationIsNeededFragment)
-        })
-        view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController().navigate(R.id.practiceFragment)
-        }
+        setupNavigation(view)
         return view
     }
 

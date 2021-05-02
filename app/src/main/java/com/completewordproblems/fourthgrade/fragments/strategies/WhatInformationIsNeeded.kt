@@ -5,10 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
-import com.completewordproblems.fourthgrade.Wizard
-import com.completewordproblems.fourthgrade.fragments.strategies.StrategyFragmentBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,14 +38,8 @@ class WhatInformationIsNeeded : StrategyFragmentBase("What information is needed
         val view: View =
             inflater.inflate(R.layout.fragment_what_information_is_needed, container, false)
         setupWordProblemText(view)
-        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
-            view.findNavController().navigate(Wizard.getTransitionId())
-        })
-        view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_whatAreYouLookingForFragment)
-        }
+        setupNavigation(view)
+        
         return view
     }
 

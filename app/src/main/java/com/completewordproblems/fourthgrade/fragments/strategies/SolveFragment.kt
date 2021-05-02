@@ -20,6 +20,7 @@ class SolveFragment : StrategyFragmentBase("Solve the problem") {
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_solve, container, false)
         setupWordProblemText(view)
+        setupNavigation(view)
         return view
     }
 }

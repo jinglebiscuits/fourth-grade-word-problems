@@ -37,6 +37,7 @@ class CreateExpressionFragment : StrategyFragmentBase("Write the equation") {
         val view: View =
             inflater.inflate(R.layout.fragment_create_expression, container, false)
         setupWordProblemText(view)
+        setupNavigation(view)
         return view
     }
 
