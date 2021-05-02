@@ -1,10 +1,11 @@
 package com.completewordproblems.fourthgrade.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -28,6 +29,7 @@ class YourGrowthFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     override fun onCreateView(

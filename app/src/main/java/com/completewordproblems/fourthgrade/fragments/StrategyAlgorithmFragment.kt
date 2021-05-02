@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 import com.completewordproblems.fourthgrade.models.Strategy
@@ -26,6 +27,11 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
     lateinit var unusedStrategiesListView: RecyclerView
     lateinit var unusedStrategiesListAdapter: UnusedStrategiesListAdapter
     lateinit var usedStrategiesListAdapter: RecyclerListAdapter
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,7 +57,7 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
             //SW temporary hack. remove
             Wizard.onLogin("Scott")
 
-            Wizard.currentStudent.strategies = usedStrategiesListAdapter.stragiesToUse
+            Wizard.currentStudent?.strategies = usedStrategiesListAdapter.stragiesToUse
         }
         return view
     }

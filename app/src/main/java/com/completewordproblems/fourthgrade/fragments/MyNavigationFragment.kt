@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 
@@ -31,6 +33,10 @@ class MyNavigationFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        if (Wizard.currentStudent == null) {
+            findNavController().navigate(R.id.action_myNavigationFragment_to_loginFragment)
+        }
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     override fun onCreateView(
@@ -49,6 +55,9 @@ class MyNavigationFragment : Fragment() {
         view.findViewById<Button>(R.id.strategy_button).setOnClickListener {
             view.findNavController()
                 .navigate(R.id.action_myNavigationFragment_to_strategyAlgorithmFragment)
+        }
+        view.findViewById<Button>(R.id.sign_out_button).setOnClickListener {
+            view.findNavController().navigate(R.id.action_myNavigationFragment_to_loginFragment)
         }
         return view
     }

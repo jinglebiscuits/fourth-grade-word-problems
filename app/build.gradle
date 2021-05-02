@@ -35,7 +35,10 @@ android {
 dependencies {
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    def nav_version = "2.3.4"
+    implementation 'androidx.annotation:annotation:1.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    def nav_version = "2.3.5"
 
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
@@ -52,7 +55,7 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     // Jetpack Compose Integration
-    implementation "androidx.navigation:navigation-compose:1.0.0-alpha09"
+    implementation "androidx.navigation:navigation-compose:1.0.0-alpha10"
 
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
