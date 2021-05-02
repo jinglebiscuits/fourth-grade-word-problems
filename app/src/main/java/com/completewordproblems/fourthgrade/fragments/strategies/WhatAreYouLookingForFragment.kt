@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
-import com.completewordproblems.fourthgrade.Wizard
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,8 +22,6 @@ class WhatAreYouLookingForFragment : StrategyFragmentBase("What are you looking 
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var wordProblemTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,16 +36,8 @@ class WhatAreYouLookingForFragment : StrategyFragmentBase("What are you looking 
     ): View {
         val view: View =
             inflater.inflate(R.layout.fragment_what_are_you_looking_for, container, false)
-        val text: TextView = view.findViewById(R.id.word_problem_text)
-        text.text = Wizard.currentProblem.getWordProblemText()
-        view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_whatInformationIsNeededFragment)
-        })
-        view.findViewById<View>(R.id.back_button).setOnClickListener {
-            view.findNavController().navigate(R.id.practiceFragment)
-        }
+        setupWordProblemText(view)
+        setupNavigation(view)
         return view
     }
 
