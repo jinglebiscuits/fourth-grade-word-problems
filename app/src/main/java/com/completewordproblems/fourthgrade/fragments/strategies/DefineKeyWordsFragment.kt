@@ -1,4 +1,4 @@
-package com.completewordproblems.fourthgrade.fragments
+package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.animation.ObjectAnimator
 import android.os.Bundle
@@ -30,7 +30,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDialogListener {
+class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), VocabularyDialogFragment.VocabularyDialogListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -75,9 +75,8 @@ class DefineKeyWordsFragment : Fragment(), VocabularyDialogFragment.VocabularyDi
         progressBar.max = progressTotal
 
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_whatAreYouLookingForFragment)
+            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
+            view.findNavController().navigate(Wizard.getTransitionId())
         })
         view.findViewById<View>(R.id.back_button).setOnClickListener {
             view.findNavController()

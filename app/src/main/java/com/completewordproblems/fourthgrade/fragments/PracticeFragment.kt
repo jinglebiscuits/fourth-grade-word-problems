@@ -8,6 +8,8 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
+import com.completewordproblems.fourthgrade.Wizard
+import com.completewordproblems.fourthgrade.models.Strategy
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -39,9 +41,8 @@ class PracticeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_practice, container, false)
         view.findViewById<Button>(R.id.start_button).setOnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
             view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_readTheProblemFragment)
+                .navigate(Wizard.getTransitionId())
         }
         return view
     }

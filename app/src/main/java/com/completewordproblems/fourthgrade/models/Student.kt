@@ -5,5 +5,6 @@ data class Student(
     var age: Int,
     var grade: Int,
     val activeConcepts: List<Concept>,
-    val masteredConcepts: List<Concept>
+    val masteredConcepts: List<Concept>,
+    var strategies: List<Strategy>
 )

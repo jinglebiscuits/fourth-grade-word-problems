@@ -1,16 +1,14 @@
-package com.completewordproblems.fourthgrade.fragments
+package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
+import com.completewordproblems.fourthgrade.fragments.strategies.StrategyFragmentBase
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,15 +17,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [DrawSceneFragment.newInstance] factory method to
+ * Use the [WhatInformationIsNeeded.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DrawSceneFragment : Fragment() {
+class WhatInformationIsNeeded : StrategyFragmentBase("What information is needed?") {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    private lateinit var wordProblemTextView: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,29 +37,18 @@ class DrawSceneFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val view: View = inflater.inflate(R.layout.fragment_draw_scene, container, false)
-        wordProblemTextView = view.findViewById(R.id.word_problem_text)
-        wordProblemTextView.text = Wizard.currentProblem.getWordProblemText()
-
+        // Inflate the layout for this fragment
+        val view: View =
+            inflater.inflate(R.layout.fragment_what_information_is_needed, container, false)
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
-            view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_createExpressionFragment)
+            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
+            view.findNavController().navigate(Wizard.getTransitionId())
         })
         view.findViewById<View>(R.id.back_button).setOnClickListener {
             view.findNavController()
-                .navigate(R.id.action_practiceFragment_to_removeInformationFragment)
-        }
-        val saveButton: Button = view.findViewById(R.id.save_drawing)
-        saveButton.setOnClickListener {
-            saveBitmap()
-            saveButton.isEnabled = false
+                .navigate(R.id.action_practiceFragment_to_whatAreYouLookingForFragment)
         }
         return view
-    }
-
-    private fun saveBitmap() {
-        Log.d("TAG", "save bitmap")
     }
 
     companion object {
@@ -73,12 +58,12 @@ class DrawSceneFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment DrawSceneFragment.
+         * @return A new instance of fragment WhatIsGivenFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            DrawSceneFragment().apply {
+            WhatInformationIsNeeded().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

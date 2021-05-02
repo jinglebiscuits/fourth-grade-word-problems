@@ -1,18 +1,38 @@
 package com.completewordproblems.fourthgrade
 
 import android.content.Context
-import com.completewordproblems.fourthgrade.models.Concept
-import com.completewordproblems.fourthgrade.models.KeyWord
-import com.completewordproblems.fourthgrade.models.WordProblem
-import com.completewordproblems.fourthgrade.models.WordProblemSegment
+import com.completewordproblems.fourthgrade.models.*
 import java.io.InputStream
 
 object Wizard {
 
     lateinit var currentProblem: WordProblem
+    lateinit var currentStudent: Student
+    var currentStrategyIndex = 0
 
     fun setCurrentProblem(context: Context) {
         currentProblem = getWordProblems(context).random()
+    }
+
+    fun getTransitionId() : Int {
+        return when (currentStudent.strategies[currentStrategyIndex]) {
+            Strategy.READ_THE_PROBLEM -> R.id.action_practiceFragment_to_readTheProblemFragment
+            Strategy.INSPECT_KEY_WORDS -> R.id.action_practiceFragment_to_defineKeyWordsFragment
+            Strategy.WHAT_ARE_YOU_LOOKING_FOR -> R.id.action_practiceFragment_to_whatAreYouLookingForFragment
+            Strategy.WHAT_INFORMATION_IS_NEEDED -> R.id.action_practiceFragment_to_whatInformationIsNeededFragment
+            Strategy.DRAW_THE_SCENE -> R.id.action_practiceFragment_to_drawSceneFragment
+            Strategy.WRITE_THE_EQUATION -> R.id.action_practiceFragment_to_createExpressionFragment
+            Strategy.SOLVE_THE_PROBLEM -> R.id.action_practiceFragment_to_solveFragment
+        }
+    }
+
+    fun onLogin(studentId: String) {
+        //SW not using studentId yet
+        val strategies = arrayListOf<Strategy>(
+            Strategy.READ_THE_PROBLEM, Strategy.INSPECT_KEY_WORDS, Strategy.WHAT_ARE_YOU_LOOKING_FOR,
+            Strategy.WHAT_INFORMATION_IS_NEEDED, Strategy.DRAW_THE_SCENE, Strategy.WRITE_THE_EQUATION, Strategy.SOLVE_THE_PROBLEM
+        )
+        currentStudent = Student("Scott", 10, 4, listOf(), listOf(), strategies)
     }
 
     fun getAshleyWordProblem(): WordProblem {
