@@ -18,20 +18,32 @@
                 <is_necessary>true</is_necessary>
                 <is_main_objective>true</is_main_objective>
                 <key_words>
-                    <start>3</start>
-                    <end>15</end>
-                    <word>simplest form</word>
-                    <concept>
-                        <standards>
-                            <standard>
-                                <type>ALABAMA</type>
-                                <id>13</id>
-                            </standard>
-                        </standards>
-                    </concept>
+                    <key_word>
+                        <start>3</start>
+                        <end>16</end>
+                        <word>simplest form</word>
+                        <concept>
+                            <standards>
+                                <standard>
+                                    <type>ALABAMA</type>
+                                    <id>13</id>
+                                </standard>
+                            </standards>
+                        </concept>
+                    </key_word>
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.1</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>3/4</answer>
     </problem>
     <problem id="2">
@@ -70,6 +82,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.OA.3</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>18</answer>
     </problem>
     <problem id="3">
@@ -84,6 +106,19 @@
                 <is_necessary>true</is_necessary>
                 <is_main_objective>false</is_main_objective>
                 <key_words>
+                    <key_word>
+                        <start>76</start>
+                        <end>87</end>
+                        <word>equal parts</word>
+                        <concept>
+                            <standards>
+                                <standard>
+                                    <type>ALABAMA</type>
+                                    <id>13</id>
+                                </standard>
+                            </standards>
+                        </concept>
+                    </key_word>
                 </key_words>
             </segment>
             <segment>
@@ -101,6 +136,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.1</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>12</answer>
     </problem>
     <problem id="4">
@@ -132,6 +177,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.2</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>Maria</answer>
     </problem>
 </word_problems>

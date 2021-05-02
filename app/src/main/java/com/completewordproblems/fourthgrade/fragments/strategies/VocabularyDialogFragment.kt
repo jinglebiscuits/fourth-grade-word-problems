@@ -28,6 +28,7 @@ class VocabularyDialogFragment(
         FourthGradeDictionary.getWord(keyWord.keyWord)
             ?.let { options.addAll(it.incorrectDefinitions) }
         FourthGradeDictionary.getWord(keyWord.keyWord)?.let { options.add(it.correctDefinition) }
+        options.shuffle()
         val adapter: ArrayAdapter<String> = ArrayAdapter<String>(
             requireContext(), android.R.layout.simple_list_item_single_choice,
             options
