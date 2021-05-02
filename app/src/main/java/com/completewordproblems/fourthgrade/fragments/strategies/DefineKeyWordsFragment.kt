@@ -12,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 import com.completewordproblems.fourthgrade.models.KeyWord
@@ -30,7 +29,8 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), VocabularyDialogFragment.VocabularyDialogListener {
+class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
+    VocabularyDialogFragment.VocabularyDialogListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -74,6 +74,15 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), Vocabul
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
 
+        val standards = arrayListOf<String>()
+        Wizard.currentProblem.concepts.forEach { concept ->
+            concept.standards.forEach { standard ->
+                standards.add(
+                    standard.id
+                )
+            }
+        }
+        standards.forEach { Log.d("jedi", "$it standard") }
         return view
     }
 

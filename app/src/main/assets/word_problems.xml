@@ -34,6 +34,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.1</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>3/4</answer>
     </problem>
     <problem id="2">
@@ -72,6 +82,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.OA.3</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>18</answer>
     </problem>
     <problem id="3">
@@ -116,6 +136,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.1</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>12</answer>
     </problem>
     <problem id="4">
@@ -147,6 +177,16 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <concepts>
+            <concept>
+                <standards>
+                    <standard>
+                        <type>COMMON_CORE</type>
+                        <id>4.NF.2</id>
+                    </standard>
+                </standards>
+            </concept>
+        </concepts>
         <answer>Maria</answer>
     </problem>
 </word_problems>

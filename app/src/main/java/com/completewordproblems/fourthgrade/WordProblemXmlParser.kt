@@ -1,10 +1,7 @@
 package com.completewordproblems.fourthgrade
 
 import android.util.Xml
-import com.completewordproblems.fourthgrade.models.Concept
-import com.completewordproblems.fourthgrade.models.KeyWord
-import com.completewordproblems.fourthgrade.models.WordProblem
-import com.completewordproblems.fourthgrade.models.WordProblemSegment
+import com.completewordproblems.fourthgrade.models.*
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
@@ -49,6 +46,7 @@ public class WordProblemXmlParser {
     private fun readWordProblem(parser: XmlPullParser): WordProblem {
         val wordProblem = WordProblem()
         var answer = ""
+        var concepts = arrayListOf<Concept>()
         var wordProblemSegments = arrayListOf<WordProblemSegment>()
         parser.require(XmlPullParser.START_TAG, ns, "problem")
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -57,12 +55,14 @@ public class WordProblemXmlParser {
             }
             when (parser.name) {
                 "word_problem_segments" -> wordProblemSegments = readWordProblemSegments(parser)
+                "concepts" -> concepts = readConcepts(parser)
                 "answer" -> answer = readAnswer(parser)
                 else -> skip(parser)
             }
         }
         wordProblem.segments = wordProblemSegments
         wordProblem.answer = answer
+        wordProblem.concepts = concepts
         return wordProblem
     }
 
@@ -104,6 +104,107 @@ public class WordProblemXmlParser {
         val wpSegment = WordProblemSegment(segment, isNecessary, isMainObjective)
         keyWords.forEach { wpSegment.addKeyword(it) }
         return wpSegment
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readConcepts(parser: XmlPullParser): ArrayList<Concept> {
+        var concepts = arrayListOf<Concept>()
+        parser.require(XmlPullParser.START_TAG, ns, "concepts")
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.eventType != XmlPullParser.START_TAG) {
+                continue
+            }
+            when (parser.name) {
+                "concept" -> concepts.add(readConcept(parser))
+                else -> skip(parser)
+            }
+        }
+        return concepts
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readConcept(parser: XmlPullParser): Concept {
+        parser.require(XmlPullParser.START_TAG, ns, "concept")
+        var standards = arrayListOf<Standard>()
+        var mastery = 0
+        var health = 0
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.eventType != XmlPullParser.START_TAG) {
+                continue
+            }
+            when (parser.name) {
+                "standards" -> standards = readStandards(parser)
+                "mastery" -> mastery = readInt(parser, "mastery")
+                "health" -> health = readInt(parser, "health")
+                else -> skip(parser)
+            }
+        }
+        return Concept(standards, mastery, health)
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readStandards(parser: XmlPullParser): ArrayList<Standard> {
+        val standards = arrayListOf<Standard>()
+        parser.require(XmlPullParser.START_TAG, ns, "standards")
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.eventType != XmlPullParser.START_TAG) {
+                continue
+            }
+            when (parser.name) {
+                "standard" -> standards.add(readStandard(parser))
+                else -> skip(parser)
+            }
+        }
+        return standards
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readStandard(parser: XmlPullParser): Standard {
+        parser.require(XmlPullParser.START_TAG, ns, "standard")
+        var standardType = StandardType.COMMON_CORE
+        var id = ""
+        var description = ""
+        while (parser.next() != XmlPullParser.END_TAG) {
+            if (parser.eventType != XmlPullParser.START_TAG) {
+                continue
+            }
+            when (parser.name) {
+                "type" -> standardType = readStandardType(parser)
+                "id" -> id = readId(parser)
+                "description" -> description = readDescription(parser)
+                else -> skip(parser)
+            }
+        }
+        return Standard(standardType, id, description)
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readStandardType(parser: XmlPullParser): StandardType {
+        parser.require(XmlPullParser.START_TAG, ns, "type")
+        val standardType = when (readText(parser)) {
+            "COMMON_CORE" -> StandardType.COMMON_CORE
+            "ALABAMA" -> StandardType.ALABAMA
+            "NAEP" -> StandardType.NAEP
+            else -> StandardType.COMMON_CORE
+        }
+        parser.require(XmlPullParser.END_TAG, ns, "type")
+        return standardType
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readId(parser: XmlPullParser): String {
+        parser.require(XmlPullParser.START_TAG, ns, "id")
+        val id = readText(parser)
+        parser.require(XmlPullParser.END_TAG, ns, "id")
+        return id
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readDescription(parser: XmlPullParser): String {
+        parser.require(XmlPullParser.START_TAG, ns, "description")
+        val description = readText(parser)
+        parser.require(XmlPullParser.END_TAG, ns, "description")
+        return description
     }
 
     @Throws(XmlPullParserException::class, IOException::class)
@@ -216,6 +317,18 @@ public class WordProblemXmlParser {
             parser.nextTag()
         }
         return result == "true"
+    }
+
+    @Throws(IOException::class, XmlPullParserException::class)
+    private fun readInt(parser: XmlPullParser, tag: String): Int {
+        parser.require(XmlPullParser.START_TAG, ns, tag)
+        var result = 0
+        if (parser.next() == XmlPullParser.TEXT) {
+            result = parser.text.toInt()
+            parser.nextTag()
+        }
+        parser.require(XmlPullParser.END_TAG, ns, tag)
+        return result
     }
 
     @Throws(IOException::class, XmlPullParserException::class)
