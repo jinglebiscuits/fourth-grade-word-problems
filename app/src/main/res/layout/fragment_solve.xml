@@ -23,6 +23,7 @@
         android:layout_height="wrap_content"
         android:hint="Answer"
         android:inputType="text"
+        android:imeOptions="actionDone"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/submit_button"
         app:layout_constraintBottom_toTopOf="@id/navigation"/>
