@@ -23,10 +23,6 @@ import com.completewordproblems.fourthgrade.strategy.RecyclerStandardsAdapter
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlin.math.min
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 private const val LOG_TAG = "DefineKeyWordsFragment"
 
 /**
@@ -57,29 +53,15 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
 
     private var progressTotal: Int = 100
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
-        incompleteKeyWords = Wizard.currentProblem.getKeyWords() as ArrayList<KeyWord>
         setupWordProblemText(view)
         setupNavigation(view)
+        incompleteKeyWords = Wizard.currentProblem.getKeyWords() as ArrayList<KeyWord>
         updateTextView()
-        progressTotal = incompleteKeyWords.size * 100
-        view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
-        numeratorTextView = view.findViewById(R.id.numerator)
-        progressBar = view.findViewById(R.id.progress_bar)
-        progressBar.max = progressTotal
-
         Wizard.currentProblem.concepts.forEach { concept ->
             concept.standards.forEach { standard ->
                 incompleteStandards.add(standard)
@@ -90,6 +72,12 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.adapter = RecyclerStandardsAdapter(incompleteStandards, this)
         }
+        progressTotal = (incompleteKeyWords.size + incompleteStandards.size) * 100
+        view.findViewById<TextView>(R.id.denominator).text =
+            (incompleteKeyWords.size + incompleteStandards.size).toString()
+        numeratorTextView = view.findViewById(R.id.numerator)
+        progressBar = view.findViewById(R.id.progress_bar)
+        progressBar.max = progressTotal
 
         return view
     }
@@ -112,34 +100,21 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
 
     override fun onSubmit(keyWord: KeyWord, isCorrect: Boolean) {
         if (isCorrect) {
-            progress = min(progress + 100, progressTotal)
             incompleteKeyWords.remove(keyWord)
             updateTextView()
-            numeratorTextView.text = ((progressTotal / 100) - incompleteKeyWords.size).toString()
+            updateProgressBar()
         }
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DefineKeyWordsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            DefineKeyWordsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateProgressBar() {
+        progress = min(progress + 100, progressTotal)
+        numeratorTextView.text =
+            ((progressTotal / 100) - (incompleteKeyWords.size + incompleteStandards.size)).toString()
     }
 
     override fun onStandardClicked(standard: Standard) {
         Log.d("JEDI", "onStandardClicked ${standard.id}")
+        incompleteStandards.remove(standard)
+        updateProgressBar()
     }
 }
