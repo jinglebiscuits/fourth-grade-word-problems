@@ -18,17 +18,19 @@
                 <is_necessary>true</is_necessary>
                 <is_main_objective>true</is_main_objective>
                 <key_words>
-                    <start>3</start>
-                    <end>15</end>
-                    <word>simplest form</word>
-                    <concept>
-                        <standards>
-                            <standard>
-                                <type>ALABAMA</type>
-                                <id>13</id>
-                            </standard>
-                        </standards>
-                    </concept>
+                    <key_word>
+                        <start>3</start>
+                        <end>16</end>
+                        <word>simplest form</word>
+                        <concept>
+                            <standards>
+                                <standard>
+                                    <type>ALABAMA</type>
+                                    <id>13</id>
+                                </standard>
+                            </standards>
+                        </concept>
+                    </key_word>
                 </key_words>
             </segment>
         </word_problem_segments>
