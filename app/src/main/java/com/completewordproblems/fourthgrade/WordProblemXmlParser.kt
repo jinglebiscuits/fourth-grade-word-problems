@@ -46,6 +46,7 @@ public class WordProblemXmlParser {
     @Throws(XmlPullParserException::class, IOException::class)
     private fun readWordProblem(parser: XmlPullParser): WordProblem {
         val wordProblem = WordProblem()
+        var answer = ""
         var wordProblemSegments = arrayListOf<WordProblemSegment>()
         parser.require(XmlPullParser.START_TAG, ns, "problem")
         while (parser.next() != XmlPullParser.END_TAG) {
@@ -54,10 +55,12 @@ public class WordProblemXmlParser {
             }
             when (parser.name) {
                 "word_problem_segments" -> wordProblemSegments = readWordProblemSegments(parser)
+                "answer" -> answer = readAnswer(parser)
                 else -> skip(parser)
             }
         }
         wordProblem.segments = wordProblemSegments
+        wordProblem.answer = answer
         return wordProblem
     }
 
@@ -119,6 +122,14 @@ public class WordProblemXmlParser {
         val isMainObjective = readBoolean(parser)
         parser.require(XmlPullParser.END_TAG, ns, "is_main_objective")
         return isMainObjective
+    }
+
+    @Throws(XmlPullParserException::class, IOException::class)
+    private fun readAnswer(parser: XmlPullParser): String {
+        parser.require(XmlPullParser.START_TAG, ns, "answer")
+        val answer = readText(parser)
+        parser.require(XmlPullParser.END_TAG, ns, "answer")
+        return answer
     }
 
     @Throws(IOException::class, XmlPullParserException::class)

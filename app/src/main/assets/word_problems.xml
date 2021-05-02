@@ -32,6 +32,7 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <answer>3/4</answer>
     </problem>
     <problem id="2">
 <!--        This problem doesn't have a concept in any one segment.-->
@@ -69,6 +70,7 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <answer>18</answer>
     </problem>
     <problem id="3">
         <!--        This problem doesn't have a concept in any one segment.-->
@@ -99,6 +101,7 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <answer>12</answer>
     </problem>
     <problem id="4">
         <!--        This problem doesn't have a concept in any one segment.-->
@@ -129,5 +132,6 @@
                 </key_words>
             </segment>
         </word_problem_segments>
+        <answer>Maria</answer>
     </problem>
 </word_problems>

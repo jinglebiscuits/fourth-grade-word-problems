@@ -39,7 +39,7 @@ class WhatInformationIsNeeded : StrategyFragmentBase("What information is needed
             inflater.inflate(R.layout.fragment_what_information_is_needed, container, false)
         setupWordProblemText(view)
         setupNavigation(view)
-        
+
         return view
     }
 
