@@ -30,7 +30,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * Use the [DefineKeyWordsFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
+class DefineKeyWordsFragment : StrategyFragmentBase("Inspect key words"),
     VocabularyDialogFragment.VocabularyDialogListener, OnStandardClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
