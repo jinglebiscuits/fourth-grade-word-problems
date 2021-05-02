@@ -7,9 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
-import com.completewordproblems.fourthgrade.models.Strategy
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,6 +32,7 @@ class PracticeFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     override fun onCreateView(

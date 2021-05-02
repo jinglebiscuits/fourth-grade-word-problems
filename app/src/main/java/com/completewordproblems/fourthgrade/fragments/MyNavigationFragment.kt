@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 
@@ -35,6 +36,7 @@ class MyNavigationFragment : Fragment() {
         if (Wizard.currentStudent == null) {
             findNavController().navigate(R.id.action_myNavigationFragment_to_loginFragment)
         }
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
     }
 
     override fun onCreateView(

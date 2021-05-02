@@ -16,12 +16,18 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.completewordproblems.fourthgrade.MainActivity
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 
 class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
