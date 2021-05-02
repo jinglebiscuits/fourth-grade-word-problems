@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_myNavigationFragment_to_strategyAlgorithmFragment"
             app:destination="@id/strategyAlgorithmFragment" />
+        <action
+            android:id="@+id/action_myNavigationFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/practiceFragment"
@@ -100,6 +103,15 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.completewordproblems.fourthgrade.fragments.ui.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment" />
     </fragment>
     <fragment
         android:id="@+id/yourGrowthFragment"

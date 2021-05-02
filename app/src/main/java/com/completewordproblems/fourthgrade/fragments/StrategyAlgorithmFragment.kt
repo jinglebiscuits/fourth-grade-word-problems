@@ -51,7 +51,7 @@ class StrategyAlgorithmFragment : Fragment(), OnDragStartListener, OnStrategyAdd
             //SW temporary hack. remove
             Wizard.onLogin("Scott")
 
-            Wizard.currentStudent.strategies = usedStrategiesListAdapter.stragiesToUse
+            Wizard.currentStudent?.strategies = usedStrategiesListAdapter.stragiesToUse
         }
         return view
     }
