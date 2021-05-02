@@ -26,8 +26,10 @@ class RecyclerStandardsAdapter(
     override fun onBindViewHolder(holder: ConceptViewHolder, position: Int) {
         holder.textView.text = standards[position].id
         holder.itemView.setOnClickListener {
-            onConceptClickListener.onStandardClicked(standards[position])
-            holder.checkBox.isChecked = true
+            if (!holder.checkBox.isChecked) {
+                onConceptClickListener.onStandardClicked(standards[position])
+                holder.checkBox.isChecked = true
+            }
         }
     }
 

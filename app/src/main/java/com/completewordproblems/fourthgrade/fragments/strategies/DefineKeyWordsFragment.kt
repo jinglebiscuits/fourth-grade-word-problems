@@ -48,7 +48,8 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var numeratorTextView: TextView
     private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
-    private var incompleteStandards: ArrayList<Standard> = ArrayList()
+    private var standards: ArrayList<Standard> = ArrayList()
+    private var incompleteStandards = 0
     private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
 
     private var progressTotal: Int = 100
@@ -64,17 +65,18 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
         updateTextView()
         Wizard.currentProblem.concepts.forEach { concept ->
             concept.standards.forEach { standard ->
-                incompleteStandards.add(standard)
+                standards.add(standard)
             }
         }
-        if (incompleteStandards.isNotEmpty()) {
+        if (standards.isNotEmpty()) {
             val recyclerView = view.findViewById<RecyclerView>(R.id.concepts_recycler_view)
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = RecyclerStandardsAdapter(incompleteStandards, this)
+            recyclerView.adapter = RecyclerStandardsAdapter(standards, this)
         }
-        progressTotal = (incompleteKeyWords.size + incompleteStandards.size) * 100
+        incompleteStandards = standards.size
+        progressTotal = (incompleteKeyWords.size + incompleteStandards) * 100
         view.findViewById<TextView>(R.id.denominator).text =
-            (incompleteKeyWords.size + incompleteStandards.size).toString()
+            (incompleteKeyWords.size + incompleteStandards).toString()
         numeratorTextView = view.findViewById(R.id.numerator)
         progressBar = view.findViewById(R.id.progress_bar)
         progressBar.max = progressTotal
@@ -109,12 +111,12 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
     private fun updateProgressBar() {
         progress = min(progress + 100, progressTotal)
         numeratorTextView.text =
-            ((progressTotal / 100) - (incompleteKeyWords.size + incompleteStandards.size)).toString()
+            ((progressTotal / 100) - (incompleteKeyWords.size + incompleteStandards)).toString()
     }
 
     override fun onStandardClicked(standard: Standard) {
         Log.d("JEDI", "onStandardClicked ${standard.id}")
-        incompleteStandards.remove(standard)
+        incompleteStandards --
         updateProgressBar()
     }
 }
