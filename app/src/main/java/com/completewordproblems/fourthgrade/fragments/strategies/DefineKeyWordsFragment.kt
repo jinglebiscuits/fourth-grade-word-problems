@@ -12,9 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 import com.completewordproblems.fourthgrade.models.KeyWord
+import com.completewordproblems.fourthgrade.models.Standard
+import com.completewordproblems.fourthgrade.strategy.OnStandardClickListener
+import com.completewordproblems.fourthgrade.strategy.RecyclerStandardsAdapter
 import com.google.android.material.progressindicator.LinearProgressIndicator
 import kotlin.math.min
 
@@ -30,7 +35,7 @@ private const val LOG_TAG = "DefineKeyWordsFragment"
  * create an instance of this fragment.
  */
 class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
-    VocabularyDialogFragment.VocabularyDialogListener {
+    VocabularyDialogFragment.VocabularyDialogListener, OnStandardClickListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -74,15 +79,18 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
         progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
         progressBar.max = progressTotal
 
-        val standards = arrayListOf<String>()
+        val standards = arrayListOf<Standard>()
         Wizard.currentProblem.concepts.forEach { concept ->
             concept.standards.forEach { standard ->
-                standards.add(
-                    standard.id
-                )
+                standards.add(standard)
             }
         }
-        standards.forEach { Log.d("jedi", "$it standard") }
+        if (standards.isNotEmpty()) {
+            val recyclerView = view.findViewById<RecyclerView>(R.id.concepts_recycler_view)
+            recyclerView.layoutManager = LinearLayoutManager(activity)
+            recyclerView.adapter = RecyclerStandardsAdapter(standards, this)
+        }
+
         return view
     }
 
@@ -129,5 +137,9 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onStandardClicked(standard: Standard) {
+        Log.d("JEDI", "onStandardClicked ${standard.id}")
     }
 }
