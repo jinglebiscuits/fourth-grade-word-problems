@@ -24,13 +24,40 @@ open class StrategyFragmentBase(private val title: String) : Fragment() {
     }
 
     fun setupNavigation(parentView: View) {
-        parentView.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
-            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
-            parentView.findNavController().navigate(Wizard.getTransitionId())
-        })
-        parentView.findViewById<View>(R.id.back_button).setOnClickListener {
-            Wizard.currentStrategyIndex = Wizard.currentStrategyIndex - 1
-            parentView.findNavController().navigate(Wizard.getTransitionId())
+        if (thisIsLastStrategy()) {
+            parentView.findViewById<View>(R.id.next_button)
+                .setOnClickListener(View.OnClickListener {
+                    Wizard.currentStrategyIndex = 0
+                    parentView.findNavController()
+                        .navigate(R.id.action_to_myNavigationFragment)
+                })
+        } else {
+            parentView.findViewById<View>(R.id.next_button)
+                .setOnClickListener(View.OnClickListener {
+                    Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
+                    parentView.findNavController().navigate(Wizard.getTransitionId())
+                })
         }
+        if (thisIsFirstStrategy()) {
+            parentView.findViewById<View>(R.id.back_button).setOnClickListener {
+                Wizard.currentStrategyIndex = 0
+                parentView.findNavController()
+                    .navigate(R.id.action_to_myNavigationFragment)
+            }
+        } else {
+            parentView.findViewById<View>(R.id.back_button).setOnClickListener {
+                Wizard.currentStrategyIndex = Wizard.currentStrategyIndex - 1
+                parentView.findNavController().navigate(Wizard.getTransitionId())
+            }
+        }
+    }
+
+    private fun thisIsLastStrategy(): Boolean {
+        val strategySize = Wizard.currentStudent?.strategies?.size ?: 0
+        return Wizard.currentStrategyIndex >= strategySize - 1
+    }
+
+    private fun thisIsFirstStrategy(): Boolean {
+        return Wizard.currentStrategyIndex == 0
     }
 }
