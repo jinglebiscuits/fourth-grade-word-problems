@@ -11,6 +11,8 @@ object FourthGradeDictionary {
             "simplest form",
             "1 is the only common factor of the numerator and denominator",
             arrayOf("The numerator is divisible by the denominator", "The denominator is divisible by the numerator")
+        ), "equal parts" to FourthGradeWord(
+            "equal parts", "Division resulting in identical parts.", arrayOf("Two fractions with equal numerators.", "Two fractions with equal denominators.")
         )
     )
 

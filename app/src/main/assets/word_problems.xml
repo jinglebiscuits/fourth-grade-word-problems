@@ -86,6 +86,19 @@
                 <is_necessary>true</is_necessary>
                 <is_main_objective>false</is_main_objective>
                 <key_words>
+                    <key_word>
+                        <start>76</start>
+                        <end>87</end>
+                        <word>equal parts</word>
+                        <concept>
+                            <standards>
+                                <standard>
+                                    <type>ALABAMA</type>
+                                    <id>13</id>
+                                </standard>
+                            </standards>
+                        </concept>
+                    </key_word>
                 </key_words>
             </segment>
             <segment>
