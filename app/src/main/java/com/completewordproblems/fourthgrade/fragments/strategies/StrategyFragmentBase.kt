@@ -3,7 +3,9 @@ package com.completewordproblems.fourthgrade.fragments.strategies
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.MainActivity
@@ -52,6 +54,15 @@ open class StrategyFragmentBase(private val title: String) : Fragment() {
                 Wizard.currentStrategyIndex = Wizard.currentStrategyIndex - 1
                 parentView.findNavController().navigate(Wizard.getTransitionId())
             }
+        }
+
+        val helper = parentView.findViewById<ImageView>(R.id.helper_button)
+        helper.setOnClickListener {
+            val builder = AlertDialog.Builder(requireContext())
+            builder.setTitle("Hello!")
+            builder.setMessage("I'm here to help! I just haven't been programmed to say anything helpful yet :-/")
+            builder.setIcon(R.drawable.word_problem_avatar)
+            builder.create().show()
         }
     }
 
