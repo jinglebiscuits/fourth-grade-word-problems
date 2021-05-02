@@ -52,6 +52,7 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
     private lateinit var progressBar: LinearProgressIndicator
     private lateinit var numeratorTextView: TextView
     private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
+    private var incompleteStandards: ArrayList<Standard> = ArrayList()
     private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
 
     private var progressTotal: Int = 100
@@ -76,19 +77,18 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"),
         progressTotal = incompleteKeyWords.size * 100
         view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()
         numeratorTextView = view.findViewById(R.id.numerator)
-        progressBar = view.findViewById<LinearProgressIndicator>(R.id.progress_bar)
+        progressBar = view.findViewById(R.id.progress_bar)
         progressBar.max = progressTotal
 
-        val standards = arrayListOf<Standard>()
         Wizard.currentProblem.concepts.forEach { concept ->
             concept.standards.forEach { standard ->
-                standards.add(standard)
+                incompleteStandards.add(standard)
             }
         }
-        if (standards.isNotEmpty()) {
+        if (incompleteStandards.isNotEmpty()) {
             val recyclerView = view.findViewById<RecyclerView>(R.id.concepts_recycler_view)
             recyclerView.layoutManager = LinearLayoutManager(activity)
-            recyclerView.adapter = RecyclerStandardsAdapter(standards, this)
+            recyclerView.adapter = RecyclerStandardsAdapter(incompleteStandards, this)
         }
 
         return view
