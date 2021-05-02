@@ -40,6 +40,7 @@ class WhatInformationIsNeeded : StrategyFragmentBase("What information is needed
         // Inflate the layout for this fragment
         val view: View =
             inflater.inflate(R.layout.fragment_what_information_is_needed, container, false)
+        setupWordProblemText(view)
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
             Wizard.currentStrategyIndex = Wizard.currentStrategyIndex + 1
             view.findNavController().navigate(Wizard.getTransitionId())

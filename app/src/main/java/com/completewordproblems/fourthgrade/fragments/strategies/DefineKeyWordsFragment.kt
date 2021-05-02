@@ -45,7 +45,6 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), Vocabul
             field = value
         }
     private lateinit var progressBar: LinearProgressIndicator
-    private lateinit var wordProblemTextView: TextView
     private lateinit var numeratorTextView: TextView
     private var incompleteKeyWords: ArrayList<KeyWord> = ArrayList()
     private val completedKeyWords: ArrayList<KeyWord> = ArrayList()
@@ -66,7 +65,7 @@ class DefineKeyWordsFragment : StrategyFragmentBase("Define key words"), Vocabul
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_define_key_words, container, false)
         incompleteKeyWords = Wizard.currentProblem.getKeyWords() as ArrayList<KeyWord>
-        wordProblemTextView = view.findViewById(R.id.word_problem_text)
+        setupWordProblemText(view)
         updateTextView()
         progressTotal = incompleteKeyWords.size * 100
         view.findViewById<TextView>(R.id.denominator).text = incompleteKeyWords.size.toString()

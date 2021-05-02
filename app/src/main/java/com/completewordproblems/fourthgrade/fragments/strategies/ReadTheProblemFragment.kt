@@ -7,12 +7,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
-import com.completewordproblems.fourthgrade.fragments.strategies.StrategyFragmentBase
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -27,7 +25,8 @@ private const val LOG_TAG = "ReadTheProblemFragment"
  * Use the [ReadTheProblemFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ReadTheProblemFragment : StrategyFragmentBase("Read the problem"), TextToSpeech.OnInitListener {
+class ReadTheProblemFragment : StrategyFragmentBase("Read the problem"),
+    TextToSpeech.OnInitListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -50,9 +49,8 @@ class ReadTheProblemFragment : StrategyFragmentBase("Read the problem"), TextToS
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_read_the_problem, container, false)
-        val text: TextView = view.findViewById(R.id.word_problem_text)
-        text.text = Wizard.currentProblem.getWordProblemText()
-        wordProblemText = text.text as String
+        setupWordProblemText(view)
+        wordProblemText = wordProblemTextView.text as String
         val readAloudButton: View = view.findViewById(R.id.read_aloud_button)
         readAloudButton.setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 this tts might not be ready

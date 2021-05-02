@@ -28,8 +28,6 @@ class DrawSceneFragment : StrategyFragmentBase("Draw the scene") {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var wordProblemTextView: TextView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,8 +41,7 @@ class DrawSceneFragment : StrategyFragmentBase("Draw the scene") {
         savedInstanceState: Bundle?
     ): View {
         val view: View = inflater.inflate(R.layout.fragment_draw_scene, container, false)
-        wordProblemTextView = view.findViewById(R.id.word_problem_text)
-        wordProblemTextView.text = Wizard.currentProblem.getWordProblemText()
+        setupWordProblemText(view)
 
         view.findViewById<View>(R.id.next_button).setOnClickListener(View.OnClickListener {
             // TODO: 4/4/21 This navigation should be based on the Student's strategy algorithm
