@@ -2,6 +2,7 @@ package com.completewordproblems.fourthgrade.fragments.strategies
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -25,7 +26,9 @@ open class StrategyFragmentBase(private val title: String) : Fragment() {
 
     fun setupNavigation(parentView: View) {
         if (thisIsLastStrategy()) {
-            parentView.findViewById<View>(R.id.next_button)
+            val nextButton = parentView.findViewById<Button>(R.id.next_button)
+            nextButton.text = "Finish"
+            nextButton
                 .setOnClickListener(View.OnClickListener {
                     Wizard.currentStrategyIndex = 0
                     parentView.findNavController()
