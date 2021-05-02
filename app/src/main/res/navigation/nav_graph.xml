@@ -76,6 +76,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/defineKeyWordsFragment"
@@ -103,6 +106,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -149,6 +155,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/createExpressionFragment"
@@ -176,6 +185,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/drawSceneFragment"
@@ -203,6 +215,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/whatInformationIsNeededFragment"
@@ -230,6 +245,9 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
     <fragment
         android:id="@+id/whatAreYouLookingForFragment"
@@ -257,5 +275,8 @@
         <action
             android:id="@+id/action_practiceFragment_to_whatAreYouLookingForFragment"
             app:destination="@id/whatAreYouLookingForFragment" />
+        <action
+            android:id="@+id/action_to_myNavigationFragment"
+            app:destination="@id/myNavigationFragment"/>
     </fragment>
 </navigation>

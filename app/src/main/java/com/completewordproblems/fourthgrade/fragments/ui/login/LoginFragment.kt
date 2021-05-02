@@ -112,7 +112,7 @@ class LoginFragment : Fragment() {
 
     private fun updateUiWithUser(model: LoggedInUserView) {
         Wizard.onLogin(model.displayName)
-        val welcome = getString(R.string.welcome) + model.displayName
+        val welcome = getString(R.string.welcome, model.displayName)
         val appContext = context?.applicationContext ?: return
         Toast.makeText(appContext, welcome, Toast.LENGTH_LONG).show()
         findNavController().navigate(R.id.action_loginFragment_to_myNavigationFragment)
