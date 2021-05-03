@@ -1,2 +1,2 @@
 # Complete Word Problems
-This app focuses on reading comprehension and math comprehension for 4th grade learners. More information to come.
+Alabama had the lowest scores in the United States on the math portion of the 2019 National Assessment of Educational Progress test. Complete Word Problems, an educational Android app, was created to help increase test scores. The app targets 4th grade students and attempts to increase word problem achievement by addressing math and reading comprehension skills in one comprehensive educational app.
