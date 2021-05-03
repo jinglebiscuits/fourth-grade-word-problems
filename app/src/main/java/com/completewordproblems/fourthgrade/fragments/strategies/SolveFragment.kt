@@ -7,15 +7,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.Fragment
 import com.completewordproblems.fourthgrade.R
 import com.completewordproblems.fourthgrade.Wizard
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SolveFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SolveFragment : StrategyFragmentBase("Solve the problem") {
 
     lateinit var answerText: EditText
